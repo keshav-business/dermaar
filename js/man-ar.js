@@ -746,7 +746,6 @@ async function keepScreenAwake() {
 }
 function goBack() {
     resetAnimation();
-    replayBtn.style.display = "none"; 
     arSystem.pause(); // Stop the camera
     TIMELINE_DETAILS.isStopAnimation = true;
     
@@ -760,66 +759,54 @@ function goBack() {
     testimonialContainer.classList.remove('show');
     
     document.querySelector('#mainScreen .btn-container').classList.add('show');
-
+    document.getElementById("replayBtn").style.display = "none";
     // Mark camera as inactive
     sessionStorage.setItem("cameraActive", "false");
 }
 
-let firstTimePlay = true; // Track if animation is played for the first time
+let lastAnimationSeq = null; // Store last animation sequence
 
 function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
 
-    const scanText = document.getElementById("scanText");
-    const replayBtn = document.getElementById("replayBtn");
+    const replayBtn = document.getElementById("replayBtn"); // Get replay button
 
     if (Number(animationSeq) === 3) {
-        // Directly start the animation for animationSeq 3
         TIMELINE_DETAILS.currentAnimationSeq = 3;
+        lastAnimationSeq = 3; // Update last animation
         init();
         sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
+        replayBtn.style.display = "none"; // Hide replay button for animation 3
     } else {
-        if (firstTimePlay) {
-            // Show scan text only the first time
-            scanText.style.display = "flex"; 
+        const scanText = document.getElementById("scanText");
+        scanText.style.background = "white"; // Set white background
+        scanText.style.display = "flex"; // Show scan message
 
-            setTimeout(() => {
-                scanText.style.display = "none"; // Hide message
-                startAnimation(animationSeq);
+        replayBtn.style.display = "block"; // Ensure replay button is hidden initially
 
-                // Show Replay Button after scan text disappears
-                replayBtn.setAttribute("data-animation", animationSeq);
-                replayBtn.style.display = "block"; 
+        setTimeout(() => {
+            scanText.style.display = "none"; // Hide message
+            TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
+            lastAnimationSeq = Number(animationSeq); // Store last played animation
+            init();
+            arSystem.resume(); // Start the camera
+            sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
 
-            }, 2000);
-
-            firstTimePlay = false; // Mark as played
-        } else {
-            startAnimation(animationSeq);
-
-            // Show Replay Button immediately for subsequent plays
-            replayBtn.setAttribute("data-animation", animationSeq);
-            replayBtn.style.display = "block"; 
-        }
+            // ✅ Show replay button after scan text disappears (for animation 1 & 2)
+            if (lastAnimationSeq === 1 || lastAnimationSeq === 2) {
+                replayBtn.style.display = "block";
+            }
+        }, 2000);
     }
 }
 
-function startAnimation(animationSeq) {
-    TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
-    init();
-    arSystem.resume(); // Start the camera
-    sessionStorage.setItem("cameraActive", "true");
-}
-
-// Function to replay the animation without scan text
 function replayAnimation() {
-    const animationSeq = document.getElementById("replayBtn").getAttribute("data-animation");
-    if (animationSeq) {
-        startAnimation(animationSeq); // Replay animation without scan text
+    if (lastAnimationSeq === 1 || lastAnimationSeq === 2) {
+        TIMELINE_DETAILS.currentAnimationSeq = lastAnimationSeq;
+        init();
     }
 }
-
 
 
 document.addEventListener('visibilitychange', function () {
