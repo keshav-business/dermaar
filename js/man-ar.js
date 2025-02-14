@@ -729,15 +729,22 @@ function init() {
 }
 
 function goBack() {
-    resetAnimation()
+    resetAnimation();
     arSystem.pause();
-    TIMELINE_DETAILS.isStopAnimation = true
-    infoTextBottom.classList.remove('show')
-    mainScreen.classList.remove('hide')
-    backBtn.classList.remove('show')
-    testimonialContainer.classList.remove('show')
-    document.querySelector('#mainScreen .btn-container').classList.add('show')
+    TIMELINE_DETAILS.isStopAnimation = true;
+    
+    // Show the main screen again
+    const mainScreen = document.getElementById("mainScreen");
+    mainScreen.style.display = "block"; 
+
+    infoTextBottom.classList.remove('show');
+    mainScreen.classList.remove('hide');
+    backBtn.classList.remove('show');
+    testimonialContainer.classList.remove('show');
+    
+    document.querySelector('#mainScreen .btn-container').classList.add('show');
 }
+
 let wakeLock = null;
 
 async function keepScreenAwake() {

@@ -740,13 +740,20 @@ function showBeforeAfterImages() {
 }
 
 function goBack() {
-    resetAnimation()
-    TIMELINE_DETAILS.isStopAnimation = true
+    resetAnimation();
     arSystem.pause();
-    infoTextBottom.classList.remove('show')
-    mainScreen.classList.remove('hide')
-    backBtn.classList.remove('show')
-    document.querySelector('#mainScreen .btn-container').classList.add('show')
+    TIMELINE_DETAILS.isStopAnimation = true;
+    
+    // Show the main screen again
+    const mainScreen = document.getElementById("mainScreen");
+    mainScreen.style.display = "block"; 
+
+    infoTextBottom.classList.remove('show');
+    mainScreen.classList.remove('hide');
+    backBtn.classList.remove('show');
+    testimonialContainer.classList.remove('show');
+    
+    document.querySelector('#mainScreen .btn-container').classList.add('show');
 }
 
 function startAnimation() {
