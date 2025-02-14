@@ -805,13 +805,16 @@ function replayAnimation() {
     if (lastAnimationSeq === 1 || lastAnimationSeq === 2) {
         TIMELINE_DETAILS.currentAnimationSeq = lastAnimationSeq;
 
-        // ✅ Restart everything except the camera
-        TIMELINE_DETAILS.isStopAnimation = true; // Stop current animation
-        resetAnimation(); // Reset animation state
-        TIMELINE_DETAILS.isStopAnimation = false; // Allow replaying
-        init(); // Restart animation sequence
-        
-        console.log("Replaying animation sequence:", lastAnimationSeq);
+        // ✅ Reset the animation sequence fully
+        TIMELINE_DETAILS.isStopAnimation = true; // Stop the current animation
+        resetAnimation(); // Ensure all animation states are reset
+
+        setTimeout(() => {
+            TIMELINE_DETAILS.isStopAnimation = false; // Allow replaying
+            init(); // Restart animation sequence
+            
+            console.log("Replaying animation sequence:", lastAnimationSeq);
+        }, 100); // Small delay to ensure reset is applied
     }
 }
 
