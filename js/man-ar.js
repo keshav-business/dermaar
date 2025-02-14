@@ -804,7 +804,14 @@ function goToAnimation(animationSeq) {
 function replayAnimation() {
     if (lastAnimationSeq === 1 || lastAnimationSeq === 2) {
         TIMELINE_DETAILS.currentAnimationSeq = lastAnimationSeq;
-        init();
+
+        // ✅ Restart everything except the camera
+        TIMELINE_DETAILS.isStopAnimation = true; // Stop current animation
+        resetAnimation(); // Reset animation state
+        TIMELINE_DETAILS.isStopAnimation = false; // Allow replaying
+        init(); // Restart animation sequence
+        
+        console.log("Replaying animation sequence:", lastAnimationSeq);
     }
 }
 
