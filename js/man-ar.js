@@ -46,6 +46,7 @@ const treatmentsBtn = document.querySelector('#treatmentsBtn');
 const testimonialsBtn = document.querySelector('#testimonialsBtn');
 const infoTextBottom = document.querySelector('#infoText');
 const infoTextParaBottom = document.querySelector('#infoText p');
+const replayButton = document.querySelector('#replayButton');
 
 const ALL_ELEMENTS = [
     baseBlurLayer,
@@ -759,66 +760,89 @@ function goBack() {
     testimonialContainer.classList.remove('show');
     
     document.querySelector('#mainScreen .btn-container').classList.add('show');
-    document.getElementById("replayBtn").style.display = "none";
+
     // Mark camera as inactive
     sessionStorage.setItem("cameraActive", "false");
 }
-
-let lastAnimationSeq = null; // Store last animation sequence
 
 function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
 
-    const replayBtn = document.getElementById("replayBtn"); // Get replay button
-
+    document.querySelector('#replayButton').classList.remove('hide');
+    document.querySelector('#replayButton').classList.add('show');
     if (Number(animationSeq) === 3) {
+        // Directly start the animation for animationSeq 3
         TIMELINE_DETAILS.currentAnimationSeq = 3;
-        lastAnimationSeq = 3; // Update last animation
         init();
         sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
-        replayBtn.style.display = "none"; // Hide replay button for animation 3
     } else {
+        // Show the Scan Text message every time with a white background
         const scanText = document.getElementById("scanText");
         scanText.style.background = "white"; // Set white background
-        scanText.style.display = "flex"; // Show scan message
+        scanText.style.display = "flex"; // Make it visible
 
-        replayBtn.style.display = "block"; // Ensure replay button is hidden initially
-
+        // Wait for 2 seconds, then hide scan text and start camera + animation
         setTimeout(() => {
             scanText.style.display = "none"; // Hide message
             TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
-            lastAnimationSeq = Number(animationSeq); // Store last played animation
             init();
             arSystem.resume(); // Start the camera
             sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
-
-            // ✅ Show replay button after scan text disappears (for animation 1 & 2)
-            if (lastAnimationSeq === 1 || lastAnimationSeq === 2) {
-                replayBtn.style.display = "block";
-            }
         }, 2000);
     }
 }
+// Add this at the end of startAnimationCommonCauses
+TIMEOUTS.push(setTimeout(() => {
+    if (TIMELINE_DETAILS.isStopAnimation)
+        return
 
-function replayAnimation() {
-    if (lastAnimationSeq === 1 || lastAnimationSeq === 2) {
-        TIMELINE_DETAILS.currentAnimationSeq = lastAnimationSeq;
+    document.querySelector('#replayButton').classList.remove('hide');
+    document.querySelector('#replayButton').classList.add('show');
+}, 22 * ANIMATION_DELAY_CONSTANT));
 
-        // ✅ Reset the animation sequence fully
-        TIMELINE_DETAILS.isStopAnimation = true; // Stop the current animation
-        resetAnimation(); // Ensure all animation states are reset
+// Add this at the end of startAnimationTreatments
+TIMEOUTS.push(setTimeout(() => {
+    if (TIMELINE_DETAILS.isStopAnimation)
+        return
 
-        setTimeout(() => {
-            TIMELINE_DETAILS.isStopAnimation = false; // Allow replaying
-            init(); // Restart animation sequence
-            
-            console.log("Replaying animation sequence:", lastAnimationSeq);
-        }, 100); // Small delay to ensure reset is applied
+    document.querySelector('#replayButton').classList.remove('hide');
+    document.querySelector('#replayButton').classList.add('show');
+}, 49 * ANIMATION_DELAY_CONSTANT));
+
+// Add this event listener for the replay button
+document.querySelector('#replayButton').addEventListener('click', function() {
+    this.classList.remove('show');
+    this.classList.add('hide');
+    resetAnimation();
+    if (TIMELINE_DETAILS.currentAnimationSeq === 1) {
+        startAnimationCommonCauses();
+    } else if (TIMELINE_DETAILS.currentAnimationSeq === 2) {
+        startAnimationTreatments();
     }
+});
+
+// Modify the goBack function
+function goBack() {
+    resetAnimation();
+    arSystem.pause(); // Stop the camera
+    TIMELINE_DETAILS.isStopAnimation = true;
+
+    document.querySelector('#replayButton').classList.remove('show');
+    document.querySelector('#replayButton').classList.add('hide');
+
+    const mainScreen = document.getElementById("mainScreen");
+    mainScreen.style.display = "block"; 
+
+    infoTextBottom.classList.remove('show');
+    mainScreen.classList.remove('hide');
+    backBtn.classList.remove('show');
+    testimonialContainer.classList.remove('show');
+    
+    document.querySelector('#mainScreen .btn-container').classList.add('show');
+
+    sessionStorage.setItem("cameraActive", "false");
 }
-
-
 document.addEventListener('visibilitychange', function () {
     console.log(document.hidden);
 
