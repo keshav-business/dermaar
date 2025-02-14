@@ -762,21 +762,26 @@ async function keepScreenAwake() {
 }
 function goToAnimation(animationSeq) {
     keepScreenAwake();
-    // Hide the main screen
     document.getElementById("mainScreen").style.display = "none";
 
-    // Show the "Scan the poster" message
-    const scanText = document.getElementById("scanText");
-    scanText.style.display = "block";
+    if (Number(animationSeq) === 3) {
+        // Directly start the animation for animationSeq 3
+        TIMELINE_DETAILS.currentAnimationSeq = 3;
+        init();
+    } else {
+        // Show the "Scan the poster" message for other animations
+        const scanText = document.getElementById("scanText");
+        scanText.style.display = "block";
 
-    // Wait for 2 seconds, then start the animation
-    setTimeout(() => {
-        scanText.style.display = "none"; // Hide message
-        TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq)
-    console.log(animationSeq, TIMELINE_DETAILS.currentAnimationSeq);
-    init()
-    }, 2000);
+        // Wait for 2 seconds, then start the animation
+        setTimeout(() => {
+            scanText.style.display = "none"; // Hide message
+            TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
+            init();
+        }, 2000);
+    }
 }
+
 
 document.addEventListener('visibilitychange', function () {
     console.log(document.hidden);
