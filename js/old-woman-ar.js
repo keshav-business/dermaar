@@ -739,22 +739,6 @@ function showBeforeAfterImages() {
     document.querySelector('#testimonial-image-container').classList.add('show')
 }
 
-function goBack() {
-    resetAnimation();
-    arSystem.pause();
-    TIMELINE_DETAILS.isStopAnimation = true;
-    
-    // Show the main screen again
-    const mainScreen = document.getElementById("mainScreen");
-    mainScreen.style.display = "block"; 
-
-    infoTextBottom.classList.remove('show');
-    mainScreen.classList.remove('hide');
-    backBtn.classList.remove('show');
-    testimonialContainer.classList.remove('show');
-    
-    document.querySelector('#mainScreen .btn-container').classList.add('show');
-}
 
 function startAnimation() {
 
@@ -873,23 +857,40 @@ async function keepScreenAwake() {
         console.error(`Wake Lock Error: ${err.message}`);
     }
 }
+function goBack() {
+    resetAnimation();
+    TIMELINE_DETAILS.isStopAnimation = true;
+    arSystem.pause(); // Stop the camera
+
+    // Show the main screen again
+    document.getElementById("mainScreen").style.display = "block"; 
+    document.getElementById("scanText").style.display = "none"; // Hide scan text
+
+    infoTextBottom.classList.remove('show');
+    mainScreen.classList.remove('hide');
+    backBtn.classList.remove('show');
+    document.querySelector('#mainScreen .btn-container').classList.add('show');
+}
+
 function goToAnimation(animationSeq) {
     keepScreenAwake();
+    
     // Hide the main screen
     document.getElementById("mainScreen").style.display = "none";
 
-    // Show the "Scan the poster" message
+    // Show the full-screen white background with scan text
     const scanText = document.getElementById("scanText");
-    scanText.style.display = "block";
+    scanText.style.display = "flex"; // Make it visible
 
-    // Wait for 2 seconds, then start the animation
+    // Wait for 2 seconds, then hide scan text and start animation
     setTimeout(() => {
         scanText.style.display = "none"; // Hide message
-        TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq)
+        TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
         console.log(animationSeq, TIMELINE_DETAILS.currentAnimationSeq);
-        init()
+        init();
     }, 2000);
 }
+
 
 document.addEventListener('visibilitychange', function () {
     console.log(document.hidden);

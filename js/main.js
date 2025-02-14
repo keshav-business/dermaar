@@ -640,7 +640,7 @@ function startAnimation() {
 
 function goBack() {
     resetAnimation();
-    arSystem.pause();
+    arSystem.pause(); // Stop the camera
     TIMELINE_DETAILS.isStopAnimation = true;
     
     // Show the main screen again
@@ -653,6 +653,9 @@ function goBack() {
     testimonialContainer.classList.remove('show');
     
     document.querySelector('#mainScreen .btn-container').classList.add('show');
+
+    // Mark camera as inactive
+    sessionStorage.setItem("cameraActive", "false");
 }
 
 
@@ -768,16 +771,20 @@ function goToAnimation(animationSeq) {
         // Directly start the animation for animationSeq 3
         TIMELINE_DETAILS.currentAnimationSeq = 3;
         init();
+        sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
     } else {
-        // Show the "Scan the poster" message for other animations
+        // Show the Scan Text message every time with a white background
         const scanText = document.getElementById("scanText");
-        scanText.style.display = "block";
+        scanText.style.background = "white"; // Set white background
+        scanText.style.display = "flex"; // Make it visible
 
-        // Wait for 2 seconds, then start the animation
+        // Wait for 2 seconds, then hide scan text and start camera + animation
         setTimeout(() => {
             scanText.style.display = "none"; // Hide message
             TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
             init();
+            arSystem.resume(); // Start the camera
+            sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
         }, 2000);
     }
 }

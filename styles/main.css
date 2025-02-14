@@ -22,9 +22,10 @@ body {
 }
 
 #scanText img {
-  max-width: 250px; /* Adjust size as needed */
+  max-width: 400px; /* Increased size */
   height: auto;
 }
+
 
 #scanning-overlay {
   position: absolute;
