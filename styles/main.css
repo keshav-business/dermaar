@@ -26,6 +26,21 @@ body {
   height: auto;
 }
 
+#replayBtn {
+  position: fixed;
+  top: 50%; /* Center vertically */
+  left: 10%; /* Adjust this value to move it left or right */
+  transform: translateY(-50%); /* Keep it centered vertically */
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: none; /* Initially hidden */
+  z-index: 10000;
+}
 
 #scanning-overlay {
   position: absolute;

@@ -746,6 +746,7 @@ async function keepScreenAwake() {
 }
 function goBack() {
     resetAnimation();
+    replayBtn.style.display = "none"; 
     arSystem.pause(); // Stop the camera
     TIMELINE_DETAILS.isStopAnimation = true;
     
@@ -764,9 +765,14 @@ function goBack() {
     sessionStorage.setItem("cameraActive", "false");
 }
 
+let firstTimePlay = true; // Track if animation is played for the first time
+
 function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
+
+    const scanText = document.getElementById("scanText");
+    const replayBtn = document.getElementById("replayBtn");
 
     if (Number(animationSeq) === 3) {
         // Directly start the animation for animationSeq 3
@@ -774,21 +780,47 @@ function goToAnimation(animationSeq) {
         init();
         sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
     } else {
-        // Show the Scan Text message every time with a white background
-        const scanText = document.getElementById("scanText");
-        scanText.style.background = "white"; // Set white background
-        scanText.style.display = "flex"; // Make it visible
+        if (firstTimePlay) {
+            // Show scan text only the first time
+            scanText.style.display = "flex"; 
 
-        // Wait for 2 seconds, then hide scan text and start camera + animation
-        setTimeout(() => {
-            scanText.style.display = "none"; // Hide message
-            TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
-            init();
-            arSystem.resume(); // Start the camera
-            sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
-        }, 2000);
+            setTimeout(() => {
+                scanText.style.display = "none"; // Hide message
+                startAnimation(animationSeq);
+
+                // Show Replay Button after scan text disappears
+                replayBtn.setAttribute("data-animation", animationSeq);
+                replayBtn.style.display = "block"; 
+
+            }, 2000);
+
+            firstTimePlay = false; // Mark as played
+        } else {
+            startAnimation(animationSeq);
+
+            // Show Replay Button immediately for subsequent plays
+            replayBtn.setAttribute("data-animation", animationSeq);
+            replayBtn.style.display = "block"; 
+        }
     }
 }
+
+function startAnimation(animationSeq) {
+    TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
+    init();
+    arSystem.resume(); // Start the camera
+    sessionStorage.setItem("cameraActive", "true");
+}
+
+// Function to replay the animation without scan text
+function replayAnimation() {
+    const animationSeq = document.getElementById("replayBtn").getAttribute("data-animation");
+    if (animationSeq) {
+        startAnimation(animationSeq); // Replay animation without scan text
+    }
+}
+
+
 
 document.addEventListener('visibilitychange', function () {
     console.log(document.hidden);

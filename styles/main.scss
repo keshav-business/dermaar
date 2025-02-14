@@ -15,7 +15,21 @@ body {
 #deviceError {
     display: none;
 }
-
+#replayBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: none; /* Initially hidden */
+    z-index: 10000;
+  }
+  
 #scanning-overlay {
     position: absolute;
     left: 0;
