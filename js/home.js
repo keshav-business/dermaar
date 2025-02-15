@@ -9,16 +9,22 @@ function startExperience() {
 }
 document.addEventListener("DOMContentLoaded", function () {
     let audio = document.getElementById("myAudio");
+    let introOverlay = document.getElementById("introOverlay");
+    let mainContent = document.getElementById("mainContent");
 
-    // Ensure audio plays on some browsers requiring user interaction
-    audio.play().catch(() => {
-        console.log("Auto-play blocked. User interaction may be required.");
-    });
+    // Ensure audio plays (Some browsers block autoplay)
+    let playPromise = audio.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {
+            console.log("Autoplay blocked, user interaction required.");
+        });
+    }
 
-    // When the audio finishes, hide the intro screen and show main content
+    // When the audio finishes, hide the intro and show main content
     audio.addEventListener("ended", function () {
-        document.getElementById("introOverlay").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
+        console.log("Audio ended, switching screens.");
+        introOverlay.style.display = "none";  // Hide intro screen
+        mainContent.style.display = "block";  // Show main screen
     });
 });
 
