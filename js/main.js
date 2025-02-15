@@ -14,7 +14,7 @@ const messages = [
     'Dirt and Pollutions',
     'Triggering Access & infection ',
     'B 12 Supplements & Medications',
-    'Disrupt your Body'
+    'Disrupt your Body',
      'Having acne can be Stressfull'
 ];
 

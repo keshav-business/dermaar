@@ -287,7 +287,7 @@ function startAnimationCommonCauses() {
             audioElement.load()
             audioElement.play()
             treatmentsBtn.classList.add('show-single')
-
+            replayBtn.classList.add('show');
             TIMELINE_DETAILS.isAnimationPlaying = false
             TIMELINE_DETAILS.currentAnimationSeq = 1
         }, 300))
@@ -591,11 +591,16 @@ function startAnimationTreatments() {
             testimonialsBtn.classList.add('show-single')
 
             TIMELINE_DETAILS.isAnimationPlaying = false
-
+            showReplayButton();
         }, 300))
 
 
     }, 49 * ANIMATION_DELAY_CONSTANT))
+}
+function showReplayButton() {
+    const replayButton = document.querySelector('#replayButton');
+    replayButton.classList.remove('hide');
+    replayButton.classList.add('show');
 }
 
 function showTestimonials() {
@@ -792,22 +797,12 @@ function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
 
-    const replayButton = document.querySelector('#replayButton');
-
     if (Number(animationSeq) === 3) {
-        // ❌ Hide replay button for animationSeq 3
-        replayButton.classList.add('hide');
-        replayButton.classList.remove('show');
-
         // Directly start the animation for animationSeq 3
         TIMELINE_DETAILS.currentAnimationSeq = 3;
         init();
         sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
     } else {
-        // ✅ Show replay button only for animationSeq 1 and 2
-        replayButton.classList.remove('hide');
-        replayButton.classList.add('show');
-
         // Show the Scan Text message every time with a white background
         const scanText = document.getElementById("scanText");
         scanText.style.background = "white"; // Set white background
@@ -847,7 +842,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const replayButton = document.querySelector('#replayButton');
 
     // Ensure the button is clickable
-    replayButton.classList.remove('hide'); // Show it (if needed)
+    replayButton.classList.remove('show'); // Show it (if needed)
 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
