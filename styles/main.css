@@ -575,35 +575,35 @@ main {
 }
 #replayButton {
   position: fixed;
-  bottom: 139px;
-  left: 145px;
-  width: 90px;
-  height: 40px;
-  padding: 5px;
-  box-sizing: border-box;
-  background: #1C1C1C;
-  border: 2px solid #CC8B42;
-  border-radius: 20px;
+  bottom: 170px; /* Adjust this value to move it slightly up */
+  left: 50%;
+  transform: translateX(-50%); /* Center the button horizontally */
+  width: 50px; /* Adjust as needed */
+  height: 50px;
+  background: none; /* No background */
+  border: none; /* No border */
+  padding: 0;
   z-index: 999;
-  display: grid;
-  place-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
-.hide {
-  display: none !important; /* Ensures the button is fully hidden */
+
+#replayButton img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 #replayButton.show {
   opacity: 1;
   pointer-events: all;
 }
-#replayButton img {
-  height: 25px;
-  -o-object-fit: contain;
-     object-fit: contain;
+
+#replayButton.hide {
+  display: none !important;
 }
+
 
 #backBtn {
   position: fixed;
