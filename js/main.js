@@ -345,8 +345,11 @@ function startAnimationCommonCauses() {
         capsuleGroup1.setAttribute('animation', `property: material.opacity; to: 0; dur: ${.75 * ANIMATION_DELAY_CONSTANT}`)
         capsuleGroup.removeAttribute('animation__1')
         capsuleGroup.removeAttribute('animation__2')
-
+       
         treatmentsBtn.classList.add('show-single')
+        replayBtn.classList.add('show-single')
+        showReplayButton();
+        
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
     }, 22.8 * ANIMATION_DELAY_CONSTANT))
@@ -370,6 +373,8 @@ function startAnimationTreatments() {
     pimples.setAttribute('animation', 'property: material.opacity; to: 1; dur: 2000;delay:2500;')
 
     treatmentsBtn.classList.remove('show-single')
+    replayBtn.classList.remove('show')
+
     // Start Animating Capsule & Lotion
     TIMEOUTS.push(setTimeout(() => {
         if (TIMELINE_DETAILS.isStopAnimation)
@@ -602,6 +607,8 @@ function startAnimationTreatments() {
         laser.removeAttribute('animation__3')
         laser.removeAttribute('animation__4')
         testimonialsBtn.classList.add('show-single')
+        replayBtn.classList.add('show')
+        showReplayButton();
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
 
@@ -842,14 +849,7 @@ function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
 
-    const replayButton = document.getElementById("replayButton");
-
     if (Number(animationSeq) === 3) {
-        // ❌ Hide replay button for animationSeq 3
-        replayButton.classList.add('hide');
-        replayButton.classList.remove('show');
-        replayButton.style.display = "none"; // Ensure it's hidden
-
         // Show full-screen text
         const fullScreenText = document.getElementById("fullScreenText");
         fullScreenText.style.display = "flex";
@@ -866,11 +866,6 @@ function goToAnimation(animationSeq) {
             sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
         };
     } else {
-        // ✅ Show replay button only for animationSeq 1 and 2
-        replayButton.classList.remove('hide');
-        replayButton.classList.add('show');
-        replayButton.style.display = "block"; // Ensure it's visible
-
         // scanText section remains unchanged
         const scanText = document.getElementById("scanText");
         scanText.style.display = "flex";
@@ -885,19 +880,18 @@ function goToAnimation(animationSeq) {
     }
 }
 
-// Add this event listener for the replay button
+function showReplayButton() {
+    replayButton.classList.remove('hide'); 
+    replayButton.classList.add('show'); 
+}
 document.addEventListener('DOMContentLoaded', function () {
     const replayButton = document.querySelector('#replayButton');
 
-    // Ensure the button is clickable
-    replayButton.classList.remove('hide'); // Show it (if needed)
+    // Ensure the button is initially visible
+    replayButton.classList.remove('hide');
 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
-
-        // Don't hide the button after clicking
-        // this.classList.remove('show');  
-        // this.classList.add('hide');  
 
         resetAnimation();
 
@@ -908,6 +902,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 startAnimationTreatments();
             }
         }, 100);
+
+        // Hide the replay button after clicking
+        setTimeout(() => {
+            replayButton.classList.add('hide');
+        }, 200); // Delay hiding slightly to ensure the click is registered
     });
 });
 

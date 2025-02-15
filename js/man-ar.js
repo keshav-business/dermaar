@@ -287,7 +287,8 @@ function startAnimationCommonCauses() {
             audioElement.load()
             audioElement.play()
             treatmentsBtn.classList.add('show-single')
-            replayBtn.classList.add('show-single');
+            replayBtn.classList.add('show');
+            showReplayButton();
             TIMELINE_DETAILS.isAnimationPlaying = false
             TIMELINE_DETAILS.currentAnimationSeq = 1
         }, 300))
@@ -309,7 +310,7 @@ function startAnimationTreatments() {
     baseFace.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
     baseFace.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000')
     treatmentsBtn.classList.remove('show-single')
-    replayBtn.classList.remove('show-single');
+    replayBtn.classList.remove('show');
     audioSource.setAttribute('src', './assets/audio/man/treatments/maleVo_Man_Treatments_Context_v1.mp3')
     audioElement.load()
     audioElement.play()
@@ -590,7 +591,7 @@ function startAnimationTreatments() {
             audioElement.play()
             baseFaceWithHair.setAttribute('animation__1', 'property: material.opacity; to: 1; dur: 1000')
             testimonialsBtn.classList.add('show-single')
-            replayBtn.classList.remove('show-single');
+            replayBtn.classList.remove('show');
             TIMELINE_DETAILS.isAnimationPlaying = false
             showReplayButton();
         }, 300))
@@ -843,15 +844,14 @@ TIMEOUTS.push(setTimeout(() => {
 document.addEventListener('DOMContentLoaded', function () {
     const replayButton = document.querySelector('#replayButton');
     
-    // Ensure the button is initially hidden
+    // ✅ Ensure the button is initially hidden
     replayButton.classList.add('hide'); 
 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
 
-        // Hide the replay button after clicking
-        this.classList.add('hide');  
-        this.classList.remove('show'); 
+        // ✅ Hide the replay button after clicking
+        replayButton.style.display = "none"; 
 
         resetAnimation(); // Reset the animation before restarting
 
@@ -863,6 +863,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }, 100);
     });
+});
+
 
     // Ensure the replay button is shown after the animation ends
     function showReplayButton() {
@@ -871,7 +873,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Call showReplayButton() at the end of startAnimationTreatments()
-});
+
 
 
 document.addEventListener('visibilitychange', function () {

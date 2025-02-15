@@ -292,7 +292,8 @@ function startAnimationCommonCauses() {
                 // capsuleGroup.object3D.visible = false;
                 // fastFood.object3D.visible = false;
                 treatmentsBtn.classList.add('show-single')
-                replayButton.classList.remove("hide");
+                showReplayButton();
+                replayButton.classList.add("show");
                 TIMELINE_DETAILS.isAnimationPlaying = false
                 TIMELINE_DETAILS.currentAnimationSeq = 1
             }, 7500))
@@ -499,7 +500,8 @@ function startAnimationTreatments() {
             faceLine.setAttribute('animation', 'property: material.opacity; to: 0; dur: 1000')
             baseFace.setAttribute('animation', 'property: material.opacity; to: 0; dur: 2500')
             testimonialsBtn.classList.add('show-single')
-            replayButton.classList.remove("hide");
+            showReplayButton();
+            replayButton.classList.add('show');
             TIMELINE_DETAILS.isAnimationPlaying = false
 
         }, 1000))
@@ -897,6 +899,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
+        
+        // ✅ Hide the replay button immediately after clicking
+        replayButton.classList.add('hide');
+        replayButton.classList.remove('show');
 
         resetAnimation();
 
@@ -912,6 +918,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function showReplayButton() {
+    replayButton.classList.remove('hide'); 
+    replayButton.classList.add('show'); 
+}
+
 
 function goToAnimation(animationSeq) {
     keepScreenAwake();
@@ -923,17 +934,6 @@ function goToAnimation(animationSeq) {
     const scanText = document.getElementById("scanText");
     scanText.style.display = "flex"; // Make it visible
 
-    // ✅ Show the replay button (only for animation sequences 1 and 2)
-    const replayButton = document.getElementById("replayButton");
-    if (replayButton) {
-        if (Number(animationSeq) === 1 || Number(animationSeq) === 2) {
-            replayButton.classList.remove("hide");
-            replayButton.classList.add("show");
-        } else {
-            replayButton.classList.add("hide"); // Hide replay button for other sequences
-        }
-    }
-
     // Wait for 2 seconds, then hide scan text and start animation
     setTimeout(() => {
         scanText.style.display = "none"; // Hide message
@@ -942,7 +942,6 @@ function goToAnimation(animationSeq) {
         init();
     }, 2000);
 }
-
 
 document.addEventListener('visibilitychange', function () {
     console.log(document.hidden);
