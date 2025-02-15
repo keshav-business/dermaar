@@ -832,13 +832,18 @@ TIMEOUTS.push(setTimeout(() => {
 document.querySelector('#replayButton').addEventListener('click', function() {
     this.classList.remove('show');
     this.classList.add('hide');
+
     resetAnimation();
-    if (TIMELINE_DETAILS.currentAnimationSeq === 1) {
-        startAnimationCommonCauses();
-    } else if (TIMELINE_DETAILS.currentAnimationSeq === 2) {
-        startAnimationTreatments();
-    }
+
+    setTimeout(() => {
+        if (TIMELINE_DETAILS.currentAnimationSeq === 1) {
+            startAnimationCommonCauses();
+        } else if (TIMELINE_DETAILS.currentAnimationSeq === 2) {
+            startAnimationTreatments();
+        }
+    }, 100); // Small delay ensures reset completes
 });
+
 
 // Modify the goBack function
 function goBack() {
