@@ -906,7 +906,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Ensure the button is initially visible
     replayButton.classList.remove('hide');
-    replayButton.classList.add('show');
+   
 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
