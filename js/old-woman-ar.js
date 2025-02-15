@@ -832,7 +832,7 @@ function init() {
     // if (sceneEl)
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
-    document.getElementById("reloadButton").style.display = "block"; 
+    document.getElementById("reloadButton").style.display = "none"; 
     document.querySelector('#mainScreen .btn-container').classList.remove('show')
     TIMELINE_DETAILS.isStopAnimation = false
 

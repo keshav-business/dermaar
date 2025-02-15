@@ -373,7 +373,7 @@ function startAnimationTreatments() {
     pimples.setAttribute('animation', 'property: material.opacity; to: 1; dur: 2000;delay:2500;')
 
     treatmentsBtn.classList.remove('show-single')
-    replayBtn.classList.remove('show')
+    replayBtn.classList.add('hide')
     showReplayButton();
     // Start Animating Capsule & Lotion
     TIMEOUTS.push(setTimeout(() => {
@@ -646,7 +646,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ 10 seconds passed, switching screens.");
         introOverlay.style.display = "none";  // Hide intro screen
         mainContent.style.display = "block";  // Show main screen
-    }, 10000);
+    }, 14000);
 });
 
 
@@ -741,11 +741,8 @@ function goBack() {
     // ✅ Hide the replay button
     const replayButton = document.getElementById('replayButton');
     if (replayButton) {
-        replayButton.classList.add('hide');  // Add hide class
-        replayButton.classList.remove('show'); // Remove show class
-        replayButton.style.display = "none"; // Ensure it is hidden
+        replayButton.classList.add('hide'); 
     }
-
     // Mark camera as inactive
     sessionStorage.setItem("cameraActive", "false");
 }
@@ -761,7 +758,7 @@ function resetAnimation() {
     audioElement.currentTime = 0;
     treatmentsBtn.classList.remove('show-single')
     testimonialsBtn.classList.remove('show-single')
-    replayBtn.classList.remove('show')
+    replayBtn.classList.add('hide')
  
     ALL_ELEMENTS.forEach(element => {
 
@@ -909,6 +906,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Ensure the button is initially visible
     replayButton.classList.remove('hide');
+    replayButton.classList.add('show');
 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log

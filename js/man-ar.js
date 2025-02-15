@@ -287,6 +287,7 @@ function startAnimationCommonCauses() {
             audioElement.load()
             audioElement.play()
             treatmentsBtn.classList.add('show-single')
+            replayButton.classList.add('show')
             replayButton.style.display = "block"; 
          
             TIMELINE_DETAILS.isAnimationPlaying = false
@@ -310,6 +311,7 @@ function startAnimationTreatments() {
     baseFace.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
     baseFace.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000')
     treatmentsBtn.classList.remove('show-single')
+    replayButton.classList.add('hide')
     replayButton.style.display = "none"; 
     audioSource.setAttribute('src', './assets/audio/man/treatments/maleVo_Man_Treatments_Context_v1.mp3')
     audioElement.load()
@@ -592,6 +594,7 @@ function startAnimationTreatments() {
             baseFaceWithHair.setAttribute('animation__1', 'property: material.opacity; to: 1; dur: 1000')
             testimonialsBtn.classList.add('show-single')
             replayButton.style.display = "block"; 
+            replayButton.classList.add('show')
             showReplayButton();
             TIMELINE_DETAILS.isAnimationPlaying = false
            
@@ -659,7 +662,7 @@ function resetAnimation() {
     audioElement.pause();
     audioElement.currentTime = 0;
     treatmentsBtn.classList.remove('show-single')
-    replayBtn.classList.remove('show');
+    replayBtn.classList.add('hide');
     testimonialsBtn.classList.remove('show-single')
 
     ALL_ELEMENTS.forEach(element => {
@@ -785,8 +788,7 @@ function goBack() {
     // ✅ Hide the replay button
     const replayButton = document.getElementById('replayButton');
     if (replayButton) {
-        replayButton.classList.add('hide'); // Hides the replay button
-        replayButton.style.display = "none"; 
+        replayButton.classList.add('hide'); 
     }
 
     // ✅ Mark camera as inactive
