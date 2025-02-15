@@ -595,6 +595,8 @@ function startAnimationTreatments() {
             baseFaceWithHair.setAttribute('animation__1', 'property: material.opacity; to: 1; dur: 1000')
             testimonialsBtn.classList.add('show-single')
             replayButton.style.display = "block"; 
+          
+            replayButton.classList.remove('hide'); 
             replayButton.classList.add('show')
             showReplayButton();
             TIMELINE_DETAILS.isAnimationPlaying = false
@@ -608,7 +610,7 @@ function startAnimationTreatments() {
 function showTestimonials() {
     if (TIMELINE_DETAILS.isAnimationPlaying)
         return
-
+    replayButton.classList.add('hide')
     audioElement.pause();
     audioElement.currentTime = 0;
     mainScreen.classList.add('hide')
@@ -846,13 +848,13 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // ✅ Ensure the button is initially hidden
     replayButton.classList.add('hide'); 
-    replayButton.style.display = "none"; 
+   
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
 
         // ✅ Hide the replay button after clicking
-        replayButton.style.display = "none"; 
-
+       // replayButton.style.display = "none"; 
+       replayButton.classList.add('hide'); 
         resetAnimation(); // Reset the animation before restarting
 
         setTimeout(() => {

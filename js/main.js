@@ -618,7 +618,7 @@ function startAnimationTreatments() {
 function showTestimonials() {
     if (TIMELINE_DETAILS.isAnimationPlaying)
         return
-
+    replayButton.classList.add('hide')
     audioElement.pause();
     audioElement.currentTime = 0;
     mainScreen.classList.add('hide')
