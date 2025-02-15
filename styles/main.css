@@ -93,27 +93,7 @@ body {
   height: auto;
 }
 
-#replayButton {
-  position: absolute;
-  bottom: 105px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: none;
-}
-
-#replayButton.show {
-  display: block;
-}
-
-#replayButton.hide {
-  display: none;
-}
+/*  */
 #scanning-overlay {
   position: absolute;
   left: 0;
@@ -589,6 +569,33 @@ main {
   pointer-events: all;
 }
 #menuBtn img {
+  height: 25px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+#replayButton {
+  position: fixed;
+  top: 50px;
+  left: 10px;
+  width: 90px;
+  height: 40px;
+  padding: 5px;
+  box-sizing: border-box;
+  background: #1C1C1C;
+  border: 2px solid #CC8B42;
+  border-radius: 20px;
+  z-index: 999;
+  display: grid;
+  place-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease-in-out;
+}
+#replayButton.show {
+  opacity: 1;
+  pointer-events: all;
+}
+#replayButton img {
   height: 25px;
   -o-object-fit: contain;
      object-fit: contain;

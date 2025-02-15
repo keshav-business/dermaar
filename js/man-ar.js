@@ -829,43 +829,32 @@ TIMEOUTS.push(setTimeout(() => {
 }, 49 * ANIMATION_DELAY_CONSTANT));
 
 // Add this event listener for the replay button
-document.querySelector('#replayButton').addEventListener('click', function() {
-    this.classList.remove('show');
-    this.classList.add('hide');
+document.addEventListener('DOMContentLoaded', function () {
+    const replayButton = document.querySelector('#replayButton');
 
-    resetAnimation();
+    // Ensure the button is clickable
+    replayButton.classList.remove('hide'); // Show it (if needed)
 
-    setTimeout(() => {
-        if (TIMELINE_DETAILS.currentAnimationSeq === 1) {
-            startAnimationCommonCauses();
-        } else if (TIMELINE_DETAILS.currentAnimationSeq === 2) {
-            startAnimationTreatments();
-        }
-    }, 100); // Small delay ensures reset completes
+    replayButton.addEventListener('click', function () {
+        console.log('Replay button clicked!'); // Debugging log
+
+        // Don't hide the button after clicking
+        // this.classList.remove('show');  
+        // this.classList.add('hide');  
+
+        resetAnimation();
+
+        setTimeout(() => {
+            if (TIMELINE_DETAILS.currentAnimationSeq === 1) {
+                startAnimationCommonCauses();
+            } else if (TIMELINE_DETAILS.currentAnimationSeq === 2) {
+                startAnimationTreatments();
+            }
+        }, 100);
+    });
 });
 
 
-// Modify the goBack function
-function goBack() {
-    resetAnimation();
-    arSystem.pause(); // Stop the camera
-    TIMELINE_DETAILS.isStopAnimation = true;
-
-    document.querySelector('#replayButton').classList.remove('show');
-    document.querySelector('#replayButton').classList.add('hide');
-
-    const mainScreen = document.getElementById("mainScreen");
-    mainScreen.style.display = "block"; 
-
-    infoTextBottom.classList.remove('show');
-    mainScreen.classList.remove('hide');
-    backBtn.classList.remove('show');
-    testimonialContainer.classList.remove('show');
-    
-    document.querySelector('#mainScreen .btn-container').classList.add('show');
-
-    sessionStorage.setItem("cameraActive", "false");
-}
 document.addEventListener('visibilitychange', function () {
     console.log(document.hidden);
 
