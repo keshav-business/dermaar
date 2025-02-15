@@ -678,22 +678,38 @@ document.getElementById("startButton").addEventListener("click", function () {
         };
     }
 });
-
 function goBack() {
     resetAnimation();
-    arSystem.pause(); // Stop the camera
+
+    // ✅ Check if AR is active before pausing
+    const sceneEl = document.querySelector('a-scene');
+    const arSystem = sceneEl ? sceneEl.systems['mindar-system'] : null;
+
+    if (sessionStorage.getItem("cameraActive") === "true" && arSystem) {
+        arSystem.pause(); // Stop the camera only if AR is active
+        console.log("AR system paused.");
+    } else {
+        console.log("AR was not active, skipping pause.");
+    }
+
     TIMELINE_DETAILS.isStopAnimation = true;
-    
+
     // Show the main screen again
     const mainScreen = document.getElementById("mainScreen");
-    mainScreen.style.display = "block"; 
+    if (mainScreen) {
+        mainScreen.style.display = "block";
+        mainScreen.classList.remove('hide');
+    } else {
+        console.error("mainScreen element not found.");
+    }
 
-    infoTextBottom.classList.remove('show');
-    mainScreen.classList.remove('hide');
-    backBtn.classList.remove('show');
-    testimonialContainer.classList.remove('show');
-    
-    document.querySelector('#mainScreen .btn-container').classList.add('show');
+    // Hide other elements safely
+    if (infoTextBottom) infoTextBottom.classList.remove('show');
+    if (backBtn) backBtn.classList.remove('show');
+    if (testimonialContainer) testimonialContainer.classList.remove('show');
+
+    const btnContainer = document.querySelector('#mainScreen .btn-container');
+    if (btnContainer) btnContainer.classList.add('show');
 
     // Mark camera as inactive
     sessionStorage.setItem("cameraActive", "false");
