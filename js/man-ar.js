@@ -662,7 +662,7 @@ function resetAnimation() {
     audioElement.pause();
     audioElement.currentTime = 0;
     treatmentsBtn.classList.remove('show-single')
-    replayBtn.classList.add('hide');
+    replayButton.classList.add('hide');
     testimonialsBtn.classList.remove('show-single')
 
     ALL_ELEMENTS.forEach(element => {

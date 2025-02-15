@@ -347,7 +347,7 @@ function startAnimationCommonCauses() {
         capsuleGroup.removeAttribute('animation__2')
        
         treatmentsBtn.classList.add('show-single')
-        replayBtn.classList.add('show')
+        replayButton.classList.add('show')
         showReplayButton();
         
         TIMELINE_DETAILS.isAnimationPlaying = false
@@ -373,7 +373,7 @@ function startAnimationTreatments() {
     pimples.setAttribute('animation', 'property: material.opacity; to: 1; dur: 2000;delay:2500;')
 
     treatmentsBtn.classList.remove('show-single')
-    replayBtn.classList.add('hide')
+    replayButton.classList.add('hide')
     showReplayButton();
     // Start Animating Capsule & Lotion
     TIMEOUTS.push(setTimeout(() => {
@@ -607,7 +607,7 @@ function startAnimationTreatments() {
         laser.removeAttribute('animation__3')
         laser.removeAttribute('animation__4')
         testimonialsBtn.classList.add('show-single')
-        replayBtn.classList.add('show')
+        replayButton.classList.add('show')
     
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
@@ -646,7 +646,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ 10 seconds passed, switching screens.");
         introOverlay.style.display = "none";  // Hide intro screen
         mainContent.style.display = "block";  // Show main screen
-    }, 14000);
+    }, 12000);
 });
 
 
@@ -758,7 +758,7 @@ function resetAnimation() {
     audioElement.currentTime = 0;
     treatmentsBtn.classList.remove('show-single')
     testimonialsBtn.classList.remove('show-single')
-    replayBtn.classList.add('hide')
+    replayButton.classList.add('hide')
  
     ALL_ELEMENTS.forEach(element => {
 
