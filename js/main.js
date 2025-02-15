@@ -10,7 +10,14 @@ const TIMELINE_DETAILS = {
 }
 const TIMEOUTS = []
 let AR_READY = false
+const messages = [
+    'Getting Acne or Have Acne Scars?',
+    'Try Our Natural Remedies!',
+    'See Visible Results in Just 7 Days!',
+    'Order Now and Get 20% Off!'
+];
 
+let index = 0;
 // AR Elements
 const baseBlurLayer = document.querySelector('#baseBlurLayer');
 const baseFace = document.querySelector('#baseFace');
@@ -107,9 +114,18 @@ function startAnimationCommonCauses() {
         // audioElement.play()
         smoke.setAttribute('animation', 'property: material.opacity; to: 1; dur: 100')
         dirt.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;delay:1000;')
-        infoTextParaBottom.innerHTML = 'Getting Acne or Have Acne Scars?'
-        infoTextBottom.classList.add('show')
-
+        function changeText() {
+            infoTextParaBottom.innerHTML = messages[index];
+            infoTextBottom.classList.add('show');
+    
+            index = (index + 1) % messages.length; // Loop through messages
+    
+            // Schedule the next text change after 3 seconds
+            TIMEOUTS.push(setTimeout(changeText, 3000));
+        }
+    
+        changeText(); // Start changing text immediately
+    
         let animation = { progress: 0 };
 
         const tween = gsap.timeline(
