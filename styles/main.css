@@ -32,7 +32,7 @@ body {
 #introText {
   font-size: 20px;
   margin-bottom: 20px;
-  display: none; /* Hide intro text initially */
+  display: block; /* Hide intro text initially */
 }
 
 /* 🔹 Start button styling */
