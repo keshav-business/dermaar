@@ -292,7 +292,7 @@ function startAnimationCommonCauses() {
                 // capsuleGroup.object3D.visible = false;
                 // fastFood.object3D.visible = false;
                 treatmentsBtn.classList.add('show-single')
-
+                replayButton.classList.remove("hide");
                 TIMELINE_DETAILS.isAnimationPlaying = false
                 TIMELINE_DETAILS.currentAnimationSeq = 1
             }, 7500))
@@ -317,6 +317,7 @@ function startAnimationTreatments() {
     audioElement.play()
 
     treatmentsBtn.classList.remove('show-single')
+    replayButton.classList.add("hide");
     baseBlurLayer.setAttribute('animation', 'property: material.opacity; to: .85; dur: 600')
     baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
     baseFaceWithFiller.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 500')
@@ -498,7 +499,7 @@ function startAnimationTreatments() {
             faceLine.setAttribute('animation', 'property: material.opacity; to: 0; dur: 1000')
             baseFace.setAttribute('animation', 'property: material.opacity; to: 0; dur: 2500')
             testimonialsBtn.classList.add('show-single')
-
+            replayButton.classList.remove("hide");
             TIMELINE_DETAILS.isAnimationPlaying = false
 
         }, 1000))
@@ -513,6 +514,7 @@ function showTestimonials() {
         return
 
     testimonialsBtn.classList.remove('show-single')
+    replayButton.classList.add("hide");
     audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady_ThreadLift_Overview_v1.mp3')
     audioElement.load()
     audioElement.play()
@@ -523,6 +525,7 @@ function showTestimonials() {
     TIMELINE_DETAILS.currentAnimationSeq = 3
 
     treatmentsBtn.classList.remove('show-single')
+    replayButton.classList.add("hide");
     baseBlurLayer.setAttribute('animation', 'property: material.opacity; to: .85; dur: 600')
     baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
     baseFaceWithFiller.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 500')
@@ -774,7 +777,7 @@ function resetAnimation() {
     audioElement.currentTime = 0;
     treatmentsBtn.classList.remove('show-single')
     testimonialsBtn.classList.remove('show-single')
-
+    replayButton.classList.add("hide");
     ALL_ELEMENTS.forEach(element => {
 
         if (element.getAttribute('animation'))

@@ -575,8 +575,8 @@ main {
 }
 #replayButton {
   position: fixed;
-  top: 60px;
-  left: 10px;
+  bottom: 139px;
+  left: 145px;
   width: 90px;
   height: 40px;
   padding: 5px;
