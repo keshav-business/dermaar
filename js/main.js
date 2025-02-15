@@ -374,7 +374,7 @@ function startAnimationTreatments() {
 
     treatmentsBtn.classList.remove('show-single')
     replayBtn.classList.remove('show')
-
+    showReplayButton();
     // Start Animating Capsule & Lotion
     TIMEOUTS.push(setTimeout(() => {
         if (TIMELINE_DETAILS.isStopAnimation)

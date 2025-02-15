@@ -592,17 +592,13 @@ function startAnimationTreatments() {
             baseFaceWithHair.setAttribute('animation__1', 'property: material.opacity; to: 1; dur: 1000')
             testimonialsBtn.classList.add('show-single')
             replayBtn.classList.add('show');
-            TIMELINE_DETAILS.isAnimationPlaying = false
             showReplayButton();
+            TIMELINE_DETAILS.isAnimationPlaying = false
+           
         }, 300))
 
 
     }, 49 * ANIMATION_DELAY_CONSTANT))
-}
-function showReplayButton() {
-    const replayButton = document.querySelector('#replayButton');
-    replayButton.classList.remove('hide');
-    replayButton.classList.add('show');
 }
 
 function showTestimonials() {
@@ -822,23 +818,23 @@ function goToAnimation(animationSeq) {
     }
 }
 
-// Add this at the end of startAnimationCommonCauses
-TIMEOUTS.push(setTimeout(() => {
-    if (TIMELINE_DETAILS.isStopAnimation)
-        return
+// // Add this at the end of startAnimationCommonCauses
+// TIMEOUTS.push(setTimeout(() => {
+//     if (TIMELINE_DETAILS.isStopAnimation)
+//         return
 
-    document.querySelector('#replayButton').classList.remove('hide');
-    document.querySelector('#replayButton').classList.add('show');
-}, 22 * ANIMATION_DELAY_CONSTANT));
+//     document.querySelector('#replayButton').classList.remove('hide');
+//     document.querySelector('#replayButton').classList.add('show');
+// }, 22 * ANIMATION_DELAY_CONSTANT));
 
-// Add this at the end of startAnimationTreatments
-TIMEOUTS.push(setTimeout(() => {
-    if (TIMELINE_DETAILS.isStopAnimation)
-        return
+// // Add this at the end of startAnimationTreatments
+// TIMEOUTS.push(setTimeout(() => {
+//     if (TIMELINE_DETAILS.isStopAnimation)
+//         return
 
-    document.querySelector('#replayButton').classList.remove('hide');
-    document.querySelector('#replayButton').classList.add('show');
-}, 49 * ANIMATION_DELAY_CONSTANT));
+//     document.querySelector('#replayButton').classList.remove('hide');
+//     document.querySelector('#replayButton').classList.add('show');
+// }, 49 * ANIMATION_DELAY_CONSTANT));
 
 // Add this event listener for the replay button
 document.addEventListener('DOMContentLoaded', function () {

@@ -730,6 +730,7 @@ function showTestimonials() {
             whiteCircleRight1.setAttribute('animation__1', 'property: material.opacity; to: 0; dur: 150;delay:500;')
             tweenCircleR2.play()
             replayButton.classList.remove("hide");
+            reloadButton.classList.add("show");
             showReplayButton();
             replayButton.classList.add("show");
             TIMELINE_DETAILS.isAnimationPlaying = false
@@ -882,7 +883,7 @@ function goBack() {
     infoTextBottom.classList.remove('show');
     mainScreen.classList.remove('hide');
     backBtn.classList.remove('show');
-    reloadButton.classList.add("show");
+    document.getElementById("reloadButton").style.display = "block"; 
     document.querySelector('#mainScreen .btn-container').classList.add('show');
 
     // ✅ Hide the replay button
