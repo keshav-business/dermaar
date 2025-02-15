@@ -8,25 +8,17 @@ function startExperience() {
     backBtn.classList.add('show')
 }
 document.addEventListener("DOMContentLoaded", function () {
-    let audio = document.getElementById("myAudio");
     let introOverlay = document.getElementById("introOverlay");
     let mainContent = document.getElementById("mainContent");
 
-    // Ensure audio plays (Some browsers block autoplay)
-    let playPromise = audio.play();
-    if (playPromise !== undefined) {
-        playPromise.catch(() => {
-            console.log("Autoplay blocked, user interaction required.");
-        });
-    }
-
-    // When the audio finishes, hide the intro and show main content
-    audio.addEventListener("ended", function () {
-        console.log("Audio ended, switching screens.");
+    // Hide intro screen and show main screen after 10 seconds
+    setTimeout(function () {
+        console.log("10 seconds passed, switching screens.");
         introOverlay.style.display = "none";  // Hide intro screen
         mainContent.style.display = "block";  // Show main screen
-    });
+    }, 10000); // 10000 milliseconds = 10 seconds
 });
+
 
 function goToExperience(experienceID) {
     switch (experienceID) {
