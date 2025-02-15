@@ -805,25 +805,15 @@ async function keepScreenAwake() {
     }
 }
 function showBeforeAfterImages() {
-    if (TIMELINE_DETAILS.isAnimationPlaying) return;
+    if (TIMELINE_DETAILS.isAnimationPlaying)
+        return
 
-    TIMELINE_DETAILS.currentAnimationSeq = 3;
-    TIMELINE_DETAILS.isAnimationPlaying = false;
+    TIMELINE_DETAILS.currentAnimationSeq = 3
+    TIMELINE_DETAILS.isAnimationPlaying = false
 
-    const fullScreenText = document.getElementById("fullScreenText");
-    fullScreenText.style.display = "flex"; // Show text content
-
-    // Play audio
-    const audio = document.getElementById("animationAudio");
-    audio.play();
-
-    // When the audio ends, show the info container and testimonial image container
-    audio.onended = function () {
-        document.querySelector('#info-container').classList.add('show');
-        document.querySelector('#testimonial-image-container').classList.add('show');
-    };
+    document.querySelector('#info-container').classList.remove('show')
+    document.querySelector('#testimonial-image-container').classList.add('show')
 }
-
 function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
