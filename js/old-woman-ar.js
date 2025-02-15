@@ -877,7 +877,38 @@ function goBack() {
     backBtn.classList.remove('show');
     reloadButton.classList.add("show");
     document.querySelector('#mainScreen .btn-container').classList.add('show');
+
+    // ✅ Hide the replay button
+    const replayButton = document.getElementById('replayButton');
+    if (replayButton) {
+        replayButton.classList.add('hide'); 
+    }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const replayButton = document.querySelector('#replayButton');
+
+    // ✅ Hide the replay button initially
+    replayButton.classList.add('hide');
+    replayButton.classList.remove('show');
+
+    replayButton.addEventListener('click', function () {
+        console.log('Replay button clicked!'); // Debugging log
+
+        resetAnimation();
+
+        setTimeout(() => {
+            if (TIMELINE_DETAILS.currentAnimationSeq === 1) {
+                startAnimationCommonCauses();
+            } else if (TIMELINE_DETAILS.currentAnimationSeq === 2) {
+                startAnimationTreatments();
+            } else if (TIMELINE_DETAILS.currentAnimationSeq === 3) {
+                showTestimonials(); // Restart animation for sequence 3
+            }
+        }, 100);
+    });
+});
+
 
 function goToAnimation(animationSeq) {
     keepScreenAwake();
@@ -888,6 +919,17 @@ function goToAnimation(animationSeq) {
     // Show the full-screen white background with scan text
     const scanText = document.getElementById("scanText");
     scanText.style.display = "flex"; // Make it visible
+
+    // ✅ Show the replay button (only for animation sequences 1 and 2)
+    const replayButton = document.getElementById("replayButton");
+    if (replayButton) {
+        if (Number(animationSeq) === 1 || Number(animationSeq) === 2) {
+            replayButton.classList.remove("hide");
+            replayButton.classList.add("show");
+        } else {
+            replayButton.classList.add("hide"); // Hide replay button for other sequences
+        }
+    }
 
     // Wait for 2 seconds, then hide scan text and start animation
     setTimeout(() => {

@@ -1,6 +1,6 @@
 const menuIcon = document.querySelector("#menuIcon");
 const menuContainer = document.querySelector("#menuContainer");
-const replayBtn = document.querySelector("#replayBtn"); // Get Replay button
+const replayBtn = document.querySelector("#replayButton"); // Get Replay button
 
 const toggleMenu = () => {
     menuIcon.classList.toggle("open");

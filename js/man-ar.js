@@ -778,23 +778,36 @@ function goBack() {
     const btnContainer = document.querySelector('#mainScreen .btn-container');
     if (btnContainer) btnContainer.classList.add('show');
 
+    // ✅ Hide the replay button
+    const replayButton = document.getElementById('replayButton');
+    if (replayButton) {
+        replayButton.classList.add('hide'); // Hides the replay button
+    }
+
     // ✅ Mark camera as inactive
     sessionStorage.setItem("cameraActive", "false");
 }
-
 
 function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
 
-    document.querySelector('#replayButton').classList.remove('hide');
-    document.querySelector('#replayButton').classList.add('show');
+    const replayButton = document.querySelector('#replayButton');
+
     if (Number(animationSeq) === 3) {
+        // ❌ Hide replay button for animationSeq 3
+        replayButton.classList.add('hide');
+        replayButton.classList.remove('show');
+
         // Directly start the animation for animationSeq 3
         TIMELINE_DETAILS.currentAnimationSeq = 3;
         init();
         sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
     } else {
+        // ✅ Show replay button only for animationSeq 1 and 2
+        replayButton.classList.remove('hide');
+        replayButton.classList.add('show');
+
         // Show the Scan Text message every time with a white background
         const scanText = document.getElementById("scanText");
         scanText.style.background = "white"; // Set white background
@@ -810,6 +823,7 @@ function goToAnimation(animationSeq) {
         }, 2000);
     }
 }
+
 // Add this at the end of startAnimationCommonCauses
 TIMEOUTS.push(setTimeout(() => {
     if (TIMELINE_DETAILS.isStopAnimation)

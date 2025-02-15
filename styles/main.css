@@ -575,7 +575,7 @@ main {
 }
 #replayButton {
   position: fixed;
-  top: 50px;
+  top: 60px;
   left: 10px;
   width: 90px;
   height: 40px;
@@ -591,6 +591,10 @@ main {
   pointer-events: none;
   transition: 0.3s ease-in-out;
 }
+.hide {
+  display: none !important; /* Ensures the button is fully hidden */
+}
+
 #replayButton.show {
   opacity: 1;
   pointer-events: all;

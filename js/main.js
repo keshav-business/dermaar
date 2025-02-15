@@ -11,10 +11,11 @@ const TIMELINE_DETAILS = {
 const TIMEOUTS = []
 let AR_READY = false
 const messages = [
-    'Getting Acne or Have Acne Scars?',
-    'Try Our Natural Remedies!',
-    'See Visible Results in Just 7 Days!',
-    'Order Now and Get 20% Off!'
+    'Dirt and Pollutions',
+    'Triggering Access & infection ',
+    'B 12 Supplements & Medications',
+    'Disrupt your Body'
+     'Having acne can be Stressfull'
 ];
 
 let index = 0;
@@ -711,10 +712,17 @@ function goBack() {
     const btnContainer = document.querySelector('#mainScreen .btn-container');
     if (btnContainer) btnContainer.classList.add('show');
 
+    // ✅ Hide the replay button
+    const replayButton = document.getElementById('replayButton');
+    if (replayButton) {
+        replayButton.classList.add('hide');  // Add hide class
+        replayButton.classList.remove('show'); // Remove show class
+        replayButton.style.display = "none"; // Ensure it is hidden
+    }
+
     // Mark camera as inactive
     sessionStorage.setItem("cameraActive", "false");
 }
-
 
 function resetAnimation() {
     // TIMELINE_DETAILS.currentAnimationSeq = 1
@@ -834,7 +842,14 @@ function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
 
+    const replayButton = document.getElementById("replayButton");
+
     if (Number(animationSeq) === 3) {
+        // ❌ Hide replay button for animationSeq 3
+        replayButton.classList.add('hide');
+        replayButton.classList.remove('show');
+        replayButton.style.display = "none"; // Ensure it's hidden
+
         // Show full-screen text
         const fullScreenText = document.getElementById("fullScreenText");
         fullScreenText.style.display = "flex";
@@ -851,6 +866,11 @@ function goToAnimation(animationSeq) {
             sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
         };
     } else {
+        // ✅ Show replay button only for animationSeq 1 and 2
+        replayButton.classList.remove('hide');
+        replayButton.classList.add('show');
+        replayButton.style.display = "block"; // Ensure it's visible
+
         // scanText section remains unchanged
         const scanText = document.getElementById("scanText");
         scanText.style.display = "flex";
@@ -865,6 +885,31 @@ function goToAnimation(animationSeq) {
     }
 }
 
+// Add this event listener for the replay button
+document.addEventListener('DOMContentLoaded', function () {
+    const replayButton = document.querySelector('#replayButton');
+
+    // Ensure the button is clickable
+    replayButton.classList.remove('hide'); // Show it (if needed)
+
+    replayButton.addEventListener('click', function () {
+        console.log('Replay button clicked!'); // Debugging log
+
+        // Don't hide the button after clicking
+        // this.classList.remove('show');  
+        // this.classList.add('hide');  
+
+        resetAnimation();
+
+        setTimeout(() => {
+            if (TIMELINE_DETAILS.currentAnimationSeq === 1) {
+                startAnimationCommonCauses();
+            } else if (TIMELINE_DETAILS.currentAnimationSeq === 2) {
+                startAnimationTreatments();
+            }
+        }, 100);
+    });
+});
 
 document.addEventListener('visibilitychange', function () {
     console.log(document.hidden);
