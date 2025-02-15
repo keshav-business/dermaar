@@ -8,7 +8,7 @@ function startExperience() {
     backBtn.classList.add('show')
 }
 document.addEventListener("DOMContentLoaded", function () {
-    let audio = document.getElementById("introAudio");
+    let audio = document.getElementById("myAudio");
 
     // Ensure audio plays on some browsers requiring user interaction
     audio.play().catch(() => {
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // When the audio finishes, hide the intro screen and show main content
     audio.addEventListener("ended", function () {
-        document.getElementById("introScreen").style.display = "none";
+        document.getElementById("introOverlay").style.display = "none";
         document.getElementById("mainContent").style.display = "block";
     });
 });
