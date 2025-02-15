@@ -116,8 +116,7 @@ function startAnimationCommonCauses() {
             {
                 onUpdate: function () {
                     smoke.setAttribute('sprite-sheet', 'progress', animation.progress);
-                    infoTextParaBottom.innerHTML = 'Getting Acne ?'
-                    infoTextBottom.classList.add('show')
+                    
                 },
             }
         );
@@ -145,8 +144,7 @@ function startAnimationCommonCauses() {
         // audioElement.play()
         smoke.setAttribute('animation', 'property: material.opacity; to: 0; dur: 1000')
         dirt.setAttribute('animation', 'property: material.opacity; to: 0; dur: 1000;delay:0;')
-        infoTextParaBottom.innerHTML = 'Getting ?'
-        infoTextBottom.classList.add('show')
+   
 
         emojiSprite_1.setAttribute('animation', `property: material.opacity; to: 1; dur: ${.25 * ANIMATION_DELAY_CONSTANT}`)
 
@@ -608,16 +606,7 @@ function showTestimonials() {
     testimonialContainer.classList.add('show')
 }
 
-function showBeforeAfterImages() {
-    if (TIMELINE_DETAILS.isAnimationPlaying)
-        return
 
-    TIMELINE_DETAILS.currentAnimationSeq = 3
-    TIMELINE_DETAILS.isAnimationPlaying = false
-
-    document.querySelector('#info-container').classList.remove('show')
-    document.querySelector('#testimonial-image-container').classList.add('show')
-}
 
 function startAnimation() {
     AR_READY = true
@@ -800,6 +789,29 @@ async function keepScreenAwake() {
         console.error(`Wake Lock Error: ${err.message}`);
     }
 }
+
+function showBeforeAfterImages() {
+    if (TIMELINE_DETAILS.isAnimationPlaying) return;
+
+    TIMELINE_DETAILS.currentAnimationSeq = 3;
+    TIMELINE_DETAILS.isAnimationPlaying = false;
+
+    // Show scan text
+    const scanText = document.getElementById("scanText");
+    scanText.style.display = "flex";
+
+    // Play audio
+    const audio = document.getElementById("animationAudio");
+    audio.play();
+
+    // When audio finishes, remove scan text and show before/after images
+    audio.onended = function () {
+        scanText.style.display = "none";
+        document.querySelector('#info-container').classList.remove('show');
+        document.querySelector('#testimonial-image-container').classList.add('show');
+    };
+}
+
 function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
