@@ -116,6 +116,8 @@ function startAnimationCommonCauses() {
             {
                 onUpdate: function () {
                     smoke.setAttribute('sprite-sheet', 'progress', animation.progress);
+                    infoTextParaBottom.innerHTML = 'Getting Acne ?'
+                    infoTextBottom.classList.add('show')
                 },
             }
         );
@@ -143,7 +145,8 @@ function startAnimationCommonCauses() {
         // audioElement.play()
         smoke.setAttribute('animation', 'property: material.opacity; to: 0; dur: 1000')
         dirt.setAttribute('animation', 'property: material.opacity; to: 0; dur: 1000;delay:0;')
-
+        infoTextParaBottom.innerHTML = 'Getting ?'
+        infoTextBottom.classList.add('show')
 
         emojiSprite_1.setAttribute('animation', `property: material.opacity; to: 1; dur: ${.25 * ANIMATION_DELAY_CONSTANT}`)
 
