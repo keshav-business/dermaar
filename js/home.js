@@ -7,7 +7,10 @@ function startExperience() {
     selectionSection.classList.add('show')
     backBtn.classList.add('show')
 }
-
+document.getElementById("introAudio").addEventListener("ended", function () {
+    document.getElementById("introScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+});
 function goToExperience(experienceID) {
     switch (experienceID) {
         case 1:

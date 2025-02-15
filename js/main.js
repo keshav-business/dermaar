@@ -638,6 +638,40 @@ function startAnimation() {
     }
 }
 
+document.getElementById("startButton").addEventListener("click", function () {
+    let audio = document.getElementById("myAudio");
+    let introOverlay = document.getElementById("introOverlay");
+    let mainContent = document.getElementById("mainContent");
+    let startButton = document.getElementById("startButton");
+    let introText = document.getElementById("introText");
+
+    // Hide Start button & show intro text
+    startButton.style.display = "none";
+    introText.style.display = "block";
+
+    if (audio) {
+        let playPromise = audio.play();
+
+        // Handle autoplay restrictions
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Autoplay blocked: ", error);
+                audio.muted = true;
+                audio.play().then(() => {
+                    audio.muted = false;
+                });
+            });
+        }
+
+        // When audio finishes, hide intro and show main content
+        audio.onended = function () {
+            console.log("Audio finished, showing content...");
+            introOverlay.style.display = "none"; // Hide intro screen
+            mainContent.style.display = "block"; // Show main content
+        };
+    }
+});
+
 function goBack() {
     resetAnimation();
     arSystem.pause(); // Stop the camera
@@ -768,23 +802,32 @@ function goToAnimation(animationSeq) {
     document.getElementById("mainScreen").style.display = "none";
 
     if (Number(animationSeq) === 3) {
-        // Directly start the animation for animationSeq 3
-        TIMELINE_DETAILS.currentAnimationSeq = 3;
-        init();
-        sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
-    } else {
-        // Show the Scan Text message every time with a white background
-        const scanText = document.getElementById("scanText");
-        scanText.style.background = "white"; // Set white background
-        scanText.style.display = "flex"; // Make it visible
+        // Show full-screen text
+        const fullScreenText = document.getElementById("fullScreenText");
+        fullScreenText.style.display = "flex";
 
-        // Wait for 2 seconds, then hide scan text and start camera + animation
+        // Play audio
+        const audio = document.getElementById("animationAudio");
+        audio.play();
+
+        // When audio finishes, remove text and start animation
+        audio.onended = function () {
+            fullScreenText.style.display = "none";
+            TIMELINE_DETAILS.currentAnimationSeq = 3;
+            init();
+            sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
+        };
+    } else {
+        // scanText section remains unchanged
+        const scanText = document.getElementById("scanText");
+        scanText.style.display = "flex";
+
         setTimeout(() => {
-            scanText.style.display = "none"; // Hide message
+            scanText.style.display = "none";
             TIMELINE_DETAILS.currentAnimationSeq = Number(animationSeq);
             init();
-            arSystem.resume(); // Start the camera
-            sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
+            arSystem.resume();
+            sessionStorage.setItem("cameraActive", "true");
         }, 2000);
     }
 }

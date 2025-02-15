@@ -48,6 +48,8 @@ const audioSource = document.querySelector('#audioSource');
 // DOM Elements
 const mainScreen = document.querySelector('#mainScreen');
 const backBtn = document.querySelector('#backBtn');
+const reloadButton = document.querySelector('#reloadButton');
+
 // const testimonialContainer = document.querySelector('#testimonial-container');
 const treatmentsBtn = document.querySelector('#treatmentsBtn');
 const testimonialsBtn = document.querySelector('#testimonialsBtn');
@@ -94,6 +96,7 @@ function startAnimationCommonCauses() {
         return
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
+    reloadButton.classList.add("show");
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 1
     audioSource.setAttribute('src', './assets/audio/old-lady/botox/femaleVO_OldLady_Botox_Filler_Overview_v1.mp3')
@@ -306,6 +309,7 @@ function startAnimationTreatments() {
 
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
+    reloadButton.classList.add("show");
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 2
     audioSource.setAttribute('src', './assets/audio/old-lady/facelift/femaleVO_OldLady_FaceLift_Overview_v1.mp3')
@@ -514,6 +518,7 @@ function showTestimonials() {
     audioElement.play()
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
+    reloadButton.classList.add("show");
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 3
 
@@ -819,6 +824,7 @@ function init() {
     // if (sceneEl)
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
+    reloadButton.classList.add("show");
     document.querySelector('#mainScreen .btn-container').classList.remove('show')
     TIMELINE_DETAILS.isStopAnimation = false
 
@@ -869,6 +875,7 @@ function goBack() {
     infoTextBottom.classList.remove('show');
     mainScreen.classList.remove('hide');
     backBtn.classList.remove('show');
+    reloadButton.classList.add("show");
     document.querySelector('#mainScreen .btn-container').classList.add('show');
 }
 
@@ -898,6 +905,11 @@ document.addEventListener('visibilitychange', function () {
     if (document.hidden)
         resetAnimation()
 }, false);
+
+
+function reloadPage() {
+    window.location.href = "index.html"; // Navigate to index.html on click
+}
 
 window.resetAnimation = resetAnimation
 window.startAnimationCommonCauses = startAnimationCommonCauses
