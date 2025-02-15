@@ -729,7 +729,9 @@ function showTestimonials() {
             whiteCircleRight2.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;')
             whiteCircleRight1.setAttribute('animation__1', 'property: material.opacity; to: 0; dur: 150;delay:500;')
             tweenCircleR2.play()
-
+            replayButton.classList.remove("hide");
+            showReplayButton();
+            replayButton.classList.add("show");
             TIMELINE_DETAILS.isAnimationPlaying = false
 
         }, 500))

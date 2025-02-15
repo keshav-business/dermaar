@@ -347,7 +347,7 @@ function startAnimationCommonCauses() {
         capsuleGroup.removeAttribute('animation__2')
        
         treatmentsBtn.classList.add('show-single')
-        replayBtn.classList.add('show-single')
+        replayBtn.classList.add('show')
         showReplayButton();
         
         TIMELINE_DETAILS.isAnimationPlaying = false
@@ -608,7 +608,7 @@ function startAnimationTreatments() {
         laser.removeAttribute('animation__4')
         testimonialsBtn.classList.add('show-single')
         replayBtn.classList.add('show')
-        showReplayButton();
+    
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
 
@@ -742,7 +742,8 @@ function resetAnimation() {
     audioElement.currentTime = 0;
     treatmentsBtn.classList.remove('show-single')
     testimonialsBtn.classList.remove('show-single')
-
+    replayBtn.classList.remove('show')
+ 
     ALL_ELEMENTS.forEach(element => {
 
         if (element.getAttribute('animation'))

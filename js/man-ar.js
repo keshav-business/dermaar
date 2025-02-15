@@ -288,7 +288,7 @@ function startAnimationCommonCauses() {
             audioElement.play()
             treatmentsBtn.classList.add('show-single')
             replayBtn.classList.add('show');
-            showReplayButton();
+         
             TIMELINE_DETAILS.isAnimationPlaying = false
             TIMELINE_DETAILS.currentAnimationSeq = 1
         }, 300))
@@ -591,7 +591,7 @@ function startAnimationTreatments() {
             audioElement.play()
             baseFaceWithHair.setAttribute('animation__1', 'property: material.opacity; to: 1; dur: 1000')
             testimonialsBtn.classList.add('show-single')
-            replayBtn.classList.remove('show');
+            replayBtn.classList.add('show');
             TIMELINE_DETAILS.isAnimationPlaying = false
             showReplayButton();
         }, 300))
@@ -663,7 +663,7 @@ function resetAnimation() {
     audioElement.pause();
     audioElement.currentTime = 0;
     treatmentsBtn.classList.remove('show-single')
-    replayBtn.classList.remove('show-single');
+    replayBtn.classList.remove('show');
     testimonialsBtn.classList.remove('show-single')
 
     ALL_ELEMENTS.forEach(element => {
