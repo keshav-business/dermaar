@@ -12,31 +12,42 @@ body {
 /* 🔹 Style for the intro overlay */
 /* 🔹 Full-screen intro overlay */
 /* 🔹 Full-screen intro overlay */
+/* Full-screen background container */
 #introOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
-  color: white;
+  overflow: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  z-index: 1000;
+  align-items: center;
 }
 
-/* 🔹 Initially hide intro text */
-#introText {
-  font-size: 20px;
-  margin-bottom: 20px;
-  display: none; /* Hide intro text initially */
+/* Background image */
+#bgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; /* Keeps it behind the text */
 }
+
+/* Centered text */
+#introText {
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 1.5em;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+
 
 /* 🔹 Start button styling */
-#startButton {
+/* #startButton {
   background-color: #ff6600;
   color: white;
   padding: 15px 30px;
@@ -49,7 +60,7 @@ body {
 
 #startButton:hover {
   background-color: #ff4500;
-}
+} */
 
 /* 🔹 Hide main content initially */
 #mainContent {

@@ -653,39 +653,39 @@ function startAnimation() {
     }
 }
 
-document.getElementById("startButton").addEventListener("click", function () {
-    let audio = document.getElementById("myAudio");
-    let introOverlay = document.getElementById("introOverlay");
-    let mainContent = document.getElementById("mainContent");
-    let startButton = document.getElementById("startButton");
-    let introText = document.getElementById("introText");
+// document.getElementById("startButton").addEventListener("click", function () {
+//     let audio = document.getElementById("myAudio");
+//     let introOverlay = document.getElementById("introOverlay");
+//     let mainContent = document.getElementById("mainContent");
+//     let startButton = document.getElementById("startButton");
+//     let introText = document.getElementById("introText");
 
-    // Hide Start button & show intro text
-    startButton.style.display = "none";
-    introText.style.display = "block";
+//     // Hide Start button & show intro text
+//     startButton.style.display = "none";
+//     introText.style.display = "block";
 
-    if (audio) {
-        let playPromise = audio.play();
+//     if (audio) {
+//         let playPromise = audio.play();
 
-        // Handle autoplay restrictions
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Autoplay blocked: ", error);
-                audio.muted = true;
-                audio.play().then(() => {
-                    audio.muted = false;
-                });
-            });
-        }
+//         // Handle autoplay restrictions
+//         if (playPromise !== undefined) {
+//             playPromise.catch(error => {
+//                 console.log("Autoplay blocked: ", error);
+//                 audio.muted = true;
+//                 audio.play().then(() => {
+//                     audio.muted = false;
+//                 });
+//             });
+//         }
 
-        // When audio finishes, hide intro and show main content
-        audio.onended = function () {
-            console.log("Audio finished, showing content...");
-            introOverlay.style.display = "none"; // Hide intro screen
-            mainContent.style.display = "block"; // Show main content
-        };
-    }
-});
+//         // When audio finishes, hide intro and show main content
+//         audio.onended = function () {
+//             console.log("Audio finished, showing content...");
+//             introOverlay.style.display = "none"; // Hide intro screen
+//             mainContent.style.display = "block"; // Show main content
+//         };
+//     }
+// });
 function goBack() {
     resetAnimation();
 

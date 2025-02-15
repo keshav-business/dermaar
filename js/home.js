@@ -7,10 +7,21 @@ function startExperience() {
     selectionSection.classList.add('show')
     backBtn.classList.add('show')
 }
-document.getElementById("introAudio").addEventListener("ended", function () {
-    document.getElementById("introScreen").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
+document.addEventListener("DOMContentLoaded", function () {
+    let audio = document.getElementById("introAudio");
+
+    // Ensure audio plays on some browsers requiring user interaction
+    audio.play().catch(() => {
+        console.log("Auto-play blocked. User interaction may be required.");
+    });
+
+    // When the audio finishes, hide the intro screen and show main content
+    audio.addEventListener("ended", function () {
+        document.getElementById("introScreen").style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+    });
 });
+
 function goToExperience(experienceID) {
     switch (experienceID) {
         case 1:

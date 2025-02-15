@@ -96,7 +96,7 @@ function startAnimationCommonCauses() {
         return
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
-    reloadButton.classList.add("show");
+   // reloadButton.classList.add("show");
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 1
     audioSource.setAttribute('src', './assets/audio/old-lady/botox/femaleVO_OldLady_Botox_Filler_Overview_v1.mp3')
@@ -310,7 +310,7 @@ function startAnimationTreatments() {
 
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
-    reloadButton.classList.add("show");
+   // reloadButton.classList.add("show");
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 2
     audioSource.setAttribute('src', './assets/audio/old-lady/facelift/femaleVO_OldLady_FaceLift_Overview_v1.mp3')
@@ -522,7 +522,7 @@ function showTestimonials() {
     audioElement.play()
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
-    reloadButton.classList.add("show");
+   // reloadButton.classList.add("show");
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 3
 
@@ -730,7 +730,7 @@ function showTestimonials() {
             whiteCircleRight1.setAttribute('animation__1', 'property: material.opacity; to: 0; dur: 150;delay:500;')
             tweenCircleR2.play()
             replayButton.classList.remove("hide");
-            reloadButton.classList.add("show");
+            document.getElementById("reloadButton").style.display = "block"; 
             showReplayButton();
             replayButton.classList.add("show");
             TIMELINE_DETAILS.isAnimationPlaying = false
@@ -832,7 +832,7 @@ function init() {
     // if (sceneEl)
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
-    reloadButton.classList.add("show");
+    document.getElementById("reloadButton").style.display = "block"; 
     document.querySelector('#mainScreen .btn-container').classList.remove('show')
     TIMELINE_DETAILS.isStopAnimation = false
 
@@ -883,7 +883,7 @@ function goBack() {
     infoTextBottom.classList.remove('show');
     mainScreen.classList.remove('hide');
     backBtn.classList.remove('show');
-    document.getElementById("reloadButton").style.display = "block"; 
+    document.getElementById("reloadButton").style.display = "none"; 
     document.querySelector('#mainScreen .btn-container').classList.add('show');
 
     // ✅ Hide the replay button

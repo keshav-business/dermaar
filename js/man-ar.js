@@ -287,7 +287,7 @@ function startAnimationCommonCauses() {
             audioElement.load()
             audioElement.play()
             treatmentsBtn.classList.add('show-single')
-            replayBtn.classList.add('show');
+            replayButton.style.display = "block"; 
          
             TIMELINE_DETAILS.isAnimationPlaying = false
             TIMELINE_DETAILS.currentAnimationSeq = 1
@@ -310,7 +310,7 @@ function startAnimationTreatments() {
     baseFace.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
     baseFace.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000')
     treatmentsBtn.classList.remove('show-single')
-    replayBtn.classList.remove('show');
+    replayButton.style.display = "none"; 
     audioSource.setAttribute('src', './assets/audio/man/treatments/maleVo_Man_Treatments_Context_v1.mp3')
     audioElement.load()
     audioElement.play()
@@ -591,7 +591,7 @@ function startAnimationTreatments() {
             audioElement.play()
             baseFaceWithHair.setAttribute('animation__1', 'property: material.opacity; to: 1; dur: 1000')
             testimonialsBtn.classList.add('show-single')
-            replayBtn.classList.add('show');
+            replayButton.style.display = "block"; 
             showReplayButton();
             TIMELINE_DETAILS.isAnimationPlaying = false
            
@@ -786,6 +786,7 @@ function goBack() {
     const replayButton = document.getElementById('replayButton');
     if (replayButton) {
         replayButton.classList.add('hide'); // Hides the replay button
+        replayButton.style.display = "none"; 
     }
 
     // ✅ Mark camera as inactive
@@ -842,7 +843,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // ✅ Ensure the button is initially hidden
     replayButton.classList.add('hide'); 
-
+    replayButton.style.display = "none"; 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
 
