@@ -374,7 +374,7 @@ function startAnimationTreatments() {
 
     treatmentsBtn.classList.remove('show-single')
     replayButton.classList.add('hide')
-    showReplayButton();
+  
     // Start Animating Capsule & Lotion
     TIMEOUTS.push(setTimeout(() => {
         if (TIMELINE_DETAILS.isStopAnimation)
@@ -608,7 +608,7 @@ function startAnimationTreatments() {
         laser.removeAttribute('animation__4')
         testimonialsBtn.classList.add('show-single')
         replayButton.classList.add('show')
-    
+        showReplayButton();
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
 

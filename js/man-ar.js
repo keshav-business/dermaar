@@ -286,10 +286,11 @@ function startAnimationCommonCauses() {
             audioSource.setAttribute('src', './assets/audio/man/common-causes/maleVO_Man_CommonCauses_Part6_v1.mp3')
             audioElement.load()
             audioElement.play()
+            replayButton.classList.remove("hide");
             treatmentsBtn.classList.add('show-single')
             replayButton.classList.add('show')
-            replayButton.style.display = "block"; 
-         
+           
+            showReplayButton();
             TIMELINE_DETAILS.isAnimationPlaying = false
             TIMELINE_DETAILS.currentAnimationSeq = 1
         }, 300))
@@ -312,7 +313,7 @@ function startAnimationTreatments() {
     baseFace.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000')
     treatmentsBtn.classList.remove('show-single')
     replayButton.classList.add('hide')
-    replayButton.style.display = "none"; 
+   
     audioSource.setAttribute('src', './assets/audio/man/treatments/maleVo_Man_Treatments_Context_v1.mp3')
     audioElement.load()
     audioElement.play()
