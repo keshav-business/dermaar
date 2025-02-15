@@ -10,14 +10,24 @@ function startExperience() {
 document.addEventListener("DOMContentLoaded", function () {
     let introOverlay = document.getElementById("introOverlay");
     let mainContent = document.getElementById("mainContent");
+    let myAudio = document.getElementById("myAudio");
 
-    // Hide intro screen and show main screen after 10 seconds
+    console.log("✅ JavaScript Loaded!");
+
+    if (!introOverlay || !mainContent || !myAudio) {
+        console.error("❌ One or more elements not found! Check your HTML IDs.");
+        return;
+    }
+
+    // Hide intro screen and show main content after 10 seconds
     setTimeout(function () {
-        console.log("10 seconds passed, switching screens.");
+        console.log("✅ 10 seconds passed, switching screens.");
         introOverlay.style.display = "none";  // Hide intro screen
         mainContent.style.display = "block";  // Show main screen
-    }, 10000); // 10000 milliseconds = 10 seconds
+    }, 10000);
 });
+
+
 
 
 function goToExperience(experienceID) {
