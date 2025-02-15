@@ -805,29 +805,16 @@ async function keepScreenAwake() {
         console.error(`Wake Lock Error: ${err.message}`);
     }
 }
-
 function showBeforeAfterImages() {
-    if (TIMELINE_DETAILS.isAnimationPlaying) return;
+    if (TIMELINE_DETAILS.isAnimationPlaying)
+        return
 
-    TIMELINE_DETAILS.currentAnimationSeq = 3;
-    TIMELINE_DETAILS.isAnimationPlaying = false;
+    TIMELINE_DETAILS.currentAnimationSeq = 3
+    TIMELINE_DETAILS.isAnimationPlaying = false
 
-    // Show scan text
-    const scanText = document.getElementById("scanText");
-    scanText.style.display = "flex";
-
-    // Play audio
-    const audio = document.getElementById("animationAudio");
-    audio.play();
-
-    // When audio finishes, remove scan text and show before/after images
-    audio.onended = function () {
-        scanText.style.display = "none";
-        document.querySelector('#info-container').classList.remove('show');
-        document.querySelector('#testimonial-image-container').classList.add('show');
-    };
+    document.querySelector('#info-container').classList.remove('show')
+    document.querySelector('#testimonial-image-container').classList.add('show')
 }
-
 function goToAnimation(animationSeq) {
     keepScreenAwake();
     document.getElementById("mainScreen").style.display = "none";
