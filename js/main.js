@@ -616,18 +616,33 @@ function startAnimationTreatments() {
 }
 
 function showTestimonials() {
-    if (TIMELINE_DETAILS.isAnimationPlaying)
-        return
-    replayButton.classList.add('hide')
-    audioElement.pause();
-    audioElement.currentTime = 0;
-    mainScreen.classList.add('hide')
-    backBtn.classList.add('show')
-    TIMELINE_DETAILS.isAnimationPlaying = false
-    TIMELINE_DETAILS.currentAnimationSeq = 3
+    if (TIMELINE_DETAILS.isAnimationPlaying) 
+        return;
 
-    testimonialContainer.classList.add('show')
+    // Show full-screen text
+    const fullScreenText = document.getElementById("fullScreenText");
+    fullScreenText.style.display = "flex";
+
+    // Play audio
+    const audio = document.getElementById("animationAudio");
+    audio.play();
+
+    replayButton.classList.add('hide');
+    mainScreen.classList.add('hide');
+
+    // When audio finishes, remove text and show testimonials
+    audio.onended = function () {
+        fullScreenText.style.display = "none";
+
+        backBtn.classList.add('show');
+        TIMELINE_DETAILS.isAnimationPlaying = false;
+        TIMELINE_DETAILS.currentAnimationSeq = 3;
+        document.querySelector('#testimonial-image-container').classList.remove('show')
+        document.querySelector('#info-container').classList.add('show')
+        testimonialContainer.classList.add('show');
+    };
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     let introOverlay = document.getElementById("introOverlay");
@@ -868,20 +883,20 @@ function goToAnimation(animationSeq) {
 
     if (Number(animationSeq) === 3) {
         // Show full-screen text
-        const fullScreenText = document.getElementById("fullScreenText");
-        fullScreenText.style.display = "flex";
-
+       // const fullScreenText = document.getElementById("fullScreenText");
+      //  fullScreenText.style.display = "flex";
+//
         // Play audio
-        const audio = document.getElementById("animationAudio");
-        audio.play();
+//const audio = document.getElementById("animationAudio");
+      //  audio.play();
 
         // When audio finishes, remove text and start animation
-        audio.onended = function () {
-            fullScreenText.style.display = "none";
+       // audio.onended = function () {
+           // fullScreenText.style.display = "none";
             TIMELINE_DETAILS.currentAnimationSeq = 3;
             init();
             sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
-        };
+       // };
     } else {
         // scanText section remains unchanged
         const scanText = document.getElementById("scanText");
