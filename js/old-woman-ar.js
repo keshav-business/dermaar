@@ -141,7 +141,8 @@ function startAnimationCommonCauses() {
                 }
             )
         baseFace.setAttribute('animation', 'property: material.opacity; to: 0; dur: 2500')
-
+        syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+        syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
         // tween.start();
 
     }, 1.5 * ANIMATION_DELAY_CONSTANT))
@@ -211,8 +212,7 @@ function startAnimationCommonCauses() {
             }, 5.25 * ANIMATION_DELAY_CONSTANT))
 
             forehead.setAttribute('animation', `property: material.opacity; to: 1; delay:6000; dur: ${1 * ANIMATION_DELAY_CONSTANT}`)
-            syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-            syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+          
 
            
 
@@ -244,7 +244,7 @@ function startAnimationCommonCauses() {
         audioSource.setAttribute('src', './assets/audio/old-lady/botox/femaleVO_OldLady_Filler_v1.mp3')
         audioElement.load()
         audioElement.play()
-        syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+      
      
        
         syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 250;')
@@ -283,8 +283,10 @@ function startAnimationCommonCauses() {
             // Animate lips & cheeks
             syringeSpritesheet.setAttribute('position', '0.5 0 0.15')
             syringeSpritesheet.setAttribute('rotation', '0 0 90')
-            syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-            syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+            syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+            syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+            syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+         
             syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;')
             syringeSpritesheet.setAttribute('animation__1', `property: position; to: 0.375 -0.09 .15; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             // syringeSpritesheet.setAttribute('animation__2', `property: rotation; to: 0 0 90; delay:3500; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
@@ -313,7 +315,7 @@ function startAnimationCommonCauses() {
                 if (TIMELINE_DETAILS.isStopAnimation)
                     return
                 syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 500;')
-                syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+                syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
                 syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
                 infoTextParaBottom.innerHTML = 'Botox & Fillers Treatment'
                 // capsuleGroup.object3D.visible = false;
