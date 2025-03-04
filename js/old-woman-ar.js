@@ -158,12 +158,15 @@ function startAnimationCommonCauses() {
         baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
         baseFaceWithBotox.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
         baseFace.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
-        syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
-        syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
-        syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
-        syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
-        syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
-        syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
+        syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+        syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+        
+        syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+        syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic; delay: 2000');  // 2-second delay
+        
+        syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+        syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic; delay: 4000');  // 4-second delay (another 2 seconds after syringeSpritesheet02)
+        
         TIMEOUTS.push(setTimeout(() => {
             if (TIMELINE_DETAILS.isStopAnimation)
                 return
