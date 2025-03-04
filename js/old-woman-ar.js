@@ -161,11 +161,9 @@ function startAnimationCommonCauses() {
         syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
         syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
         
-        syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-        syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic; delay: 2000');  // 2-second delay
+       // 2-second delay
         
-        syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-        syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic; delay: 4000');  // 4-second delay (another 2 seconds after syringeSpritesheet02)
+        // 4-second delay (another 2 seconds after syringeSpritesheet02)
         
         TIMEOUTS.push(setTimeout(() => {
             if (TIMELINE_DETAILS.isStopAnimation)
@@ -193,7 +191,7 @@ function startAnimationCommonCauses() {
                 ).pause()
 
             // Start Animating Notepad & Medicine strip
-        
+           
             syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;')
             syringeSpritesheet.setAttribute('animation__1', `property: position; to: 0.375 -0.09 .15; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             TIMEOUTS.push(setTimeout(() => {
@@ -214,7 +212,9 @@ function startAnimationCommonCauses() {
             }, 5.25 * ANIMATION_DELAY_CONSTANT))
 
             forehead.setAttribute('animation', `property: material.opacity; to: 1; delay:6000; dur: ${1 * ANIMATION_DELAY_CONSTANT}`)
-          
+            syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+            syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+            syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic; delay: 2000'); 
 
             // syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
             // syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
@@ -227,7 +227,9 @@ function startAnimationCommonCauses() {
                     return
                 tween.restart(true, false);
             }, 9 * ANIMATION_DELAY_CONSTANT))
-
+            syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+            syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+            syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic; delay: 4000'); 
             leftCheek.setAttribute('animation', `property: material.opacity; to: 1; delay:9000; dur: ${.75 * ANIMATION_DELAY_CONSTANT}`)
             rightCheek.setAttribute('animation', `property: material.opacity; to: 1; delay:9000; dur: ${.75 * ANIMATION_DELAY_CONSTANT}`)
 
@@ -243,6 +245,7 @@ function startAnimationCommonCauses() {
         audioSource.setAttribute('src', './assets/audio/old-lady/botox/femaleVO_OldLady_Filler_v1.mp3')
         audioElement.load()
         audioElement.play()
+        syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
         syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 250;')
         syringeSpritesheet.removeAttribute('animation__1')
         syringeSpritesheet.removeAttribute('animation__2')
