@@ -242,7 +242,7 @@ function startAnimationCommonCauses() {
             audioSource.setAttribute('src', './assets/audio/man/common-causes/maleVO_Man_CommonCauses_Part5(Nutrition)_v1.mp3')
             audioElement.load()
             audioElement.play()
-            fastFood.setAttribute('animation', `property: material.opacity; to: 1; dur: ${.5 * ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
+            fastFood.setAttribute('animation', `property: material.opacity; to: 0; dur: ${.5 * ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
             fastFood.setAttribute('animation__1', `property: scale; to: 0.9 0.9 1; dur: ${1.5 * ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
             // fastFood.setAttribute('animation__2', `property: position; to: 0.225 -.6 .2; dur: ${1.5*ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
 
@@ -250,7 +250,7 @@ function startAnimationCommonCauses() {
             burger.setAttribute('animation__1', `property: scale; to: 0.9 0.9 1;delay:300; dur: ${1.5 * ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
             // burger.setAttribute('animation__2', `property: position; to: 0.245 -.55 .25;delay:300; dur: ${1.5*ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
 
-            pizza.setAttribute('animation', `property: material.opacity; to: 1;delay:400; dur: ${.5 * ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
+            pizza.setAttribute('animation', `property: material.opacity; to: 0;delay:400; dur: ${.5 * ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
             pizza.setAttribute('animation__1', `property: scale; to: 0.9 0.9 1;delay:600; dur: ${1.5 * ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
             // pizza.setAttribute('animation__2', `property: position; to: 0.225 -.6 .3;delay:600; dur: ${1.5*ANIMATION_DELAY_CONSTANT};easing: easeInOutElastic`)
 
