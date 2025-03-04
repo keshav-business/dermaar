@@ -407,7 +407,7 @@ function startAnimationTreatments() {
                     ease: 'none'
                 }
             )
-        botoxMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 300; delay: 1500;')
+        botoxMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 5000; delay: 1500;')
 
         let animationBotox = { progress: 0 };
 
@@ -428,7 +428,7 @@ function startAnimationTreatments() {
                 }
             )
 
-        fillerMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 300; delay: 2500;')
+        fillerMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 5000; delay: 2500;')
 
         let animationFiller = { progress: 0 };
 
@@ -480,11 +480,11 @@ function startAnimationTreatments() {
         audioElement.load()
         audioElement.play()
 
-        methodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
-        botoxMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
-        botoxLineMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
-        fillerMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
-        threadMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
+        methodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
+        botoxMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
+        botoxLineMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
+        fillerMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
+        threadMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
 
         lips.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300;')
         leftCheek.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300;')
@@ -906,7 +906,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // ✅ Hide the replay button immediately after clicking
         replayButton.classList.add('hide');
         replayButton.classList.remove('show');
-
+        document.getElementById("reloadButton").style.display = "none";
         resetAnimation();
 
         setTimeout(() => {
