@@ -661,8 +661,8 @@ main {
 }
 #reloadButton {
   position: fixed;
-  top: 50px;  
-  right: 10px; 
+  bottom: 170px;  
+  right: 115px; 
   width: auto;  
   height: auto;  
   background: none;  

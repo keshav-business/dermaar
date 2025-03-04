@@ -726,7 +726,7 @@ function showTestimonials() {
                 ).pause()
 
             chin.setAttribute('animation', `property: material.opacity; to: 1;delay:0; dur: ${2.5 * ANIMATION_DELAY_CONSTANT}`)
-            whiteCircleRight2.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;')
+            whiteCircleRight2.setAttribute('animation', 'property: material.opacity; to: 1; dur: 150;')
             whiteCircleRight1.setAttribute('animation__1', 'property: material.opacity; to: 0; dur: 150;delay:500;')
             tweenCircleR2.play()
             replayButton.classList.remove("hide");
