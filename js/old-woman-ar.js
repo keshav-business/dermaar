@@ -480,11 +480,11 @@ function startAnimationTreatments() {
         audioElement.load()
         audioElement.play()
 
-        methodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
-        botoxMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
-        botoxLineMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
-        fillerMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
-        threadMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300; delay:0;')
+        methodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
+        botoxMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
+        botoxLineMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
+        fillerMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
+        threadMethodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 600; delay:0;')
 
         lips.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300;')
         leftCheek.setAttribute('animation', 'property: material.opacity; to: 0; dur: 300;')
@@ -726,7 +726,7 @@ function showTestimonials() {
                 ).pause()
 
             chin.setAttribute('animation', `property: material.opacity; to: 1;delay:0; dur: ${2.5 * ANIMATION_DELAY_CONSTANT}`)
-            whiteCircleRight2.setAttribute('animation', 'property: material.opacity; to: 1; dur: 150;')
+            whiteCircleRight2.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;')
             whiteCircleRight1.setAttribute('animation__1', 'property: material.opacity; to: 0; dur: 150;delay:500;')
             tweenCircleR2.play()
             replayButton.classList.remove("hide");
@@ -734,7 +734,7 @@ function showTestimonials() {
             showReplayButton();
             replayButton.classList.add("show");
             TIMELINE_DETAILS.isAnimationPlaying = false
-
+            whiteCircleRight2.setAttribute('animation', 'property: material.opacity; to: 0; dur: 500;')
         }, 500))
 
 
