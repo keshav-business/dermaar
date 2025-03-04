@@ -158,7 +158,12 @@ function startAnimationCommonCauses() {
         baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
         baseFaceWithBotox.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
         baseFace.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
-
+        syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
+        syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
+        syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
+        syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
+        syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
+        syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
         TIMEOUTS.push(setTimeout(() => {
             if (TIMELINE_DETAILS.isStopAnimation)
                 return
@@ -185,12 +190,7 @@ function startAnimationCommonCauses() {
                 ).pause()
 
             // Start Animating Notepad & Medicine strip
-            syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
-            syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
-            syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
-            syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
-            syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
-            syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;')
+        
             syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;')
             syringeSpritesheet.setAttribute('animation__1', `property: position; to: 0.375 -0.09 .15; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             TIMEOUTS.push(setTimeout(() => {
@@ -213,9 +213,9 @@ function startAnimationCommonCauses() {
             forehead.setAttribute('animation', `property: material.opacity; to: 1; delay:6000; dur: ${1 * ANIMATION_DELAY_CONSTANT}`)
           
 
-            syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
-            syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
-            syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+            // syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+            // syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+            // syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
             syringeSpritesheet.setAttribute('animation__4', `property: position;from:-0.2 0.625 .15; to: -0.515 0.135 .15;delay:7500; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             syringeSpritesheet.setAttribute('animation__5', `property: rotation;from:0 0 210; to: 0 0 270;delay:7500; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             syringeSpritesheet.setAttribute('sprite-sheet', 'progress', 0);
