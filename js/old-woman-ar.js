@@ -214,7 +214,7 @@ function startAnimationCommonCauses() {
             forehead.setAttribute('animation', `property: material.opacity; to: 1; delay:6000; dur: ${1 * ANIMATION_DELAY_CONSTANT}`)
             syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
             syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-            syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic; delay: 2000'); 
+            syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;'); 
 
             // syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
             // syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
@@ -227,7 +227,7 @@ function startAnimationCommonCauses() {
                     return
                 tween.restart(true, false);
             }, 9 * ANIMATION_DELAY_CONSTANT))
-            syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+          
             syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
             syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic; delay: 4000'); 
             leftCheek.setAttribute('animation', `property: material.opacity; to: 1; delay:9000; dur: ${.75 * ANIMATION_DELAY_CONSTANT}`)
@@ -245,6 +245,7 @@ function startAnimationCommonCauses() {
         audioSource.setAttribute('src', './assets/audio/old-lady/botox/femaleVO_OldLady_Filler_v1.mp3')
         audioElement.load()
         audioElement.play()
+        syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
         syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
         syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 250;')
         syringeSpritesheet.removeAttribute('animation__1')
