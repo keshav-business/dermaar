@@ -172,6 +172,9 @@
 
                 <!-- Face Line Spritesheet -->
                 <img id="syringeSpritesheetSrc" src="./assets/images/old-lady/spritesheet_syringe-v3.png">
+                <img id="syringeSpritesheetSrc01" src="./assets/images/old-lady-thumbnail.png">
+                <img id="syringeSpritesheetSrc02" src="./assets/images/old-lady-thumbnail.png">
+                <img id="syringeSpritesheetSrc03" src="./assets/images/old-lady-thumbnail.png">
 
                 <!-- BOTOX -->
 
@@ -287,6 +290,22 @@
                     rotation="0 0 90"
                     material="shader: flat;src: #syringeSpritesheetSrc; transparent:true; opacity: 0; alphaTest:false; depthTest:false;"
                     position="0.5 0 0.15" sprite-sheet="rows: 17; progress: 0;" scale=".35 .35 1"></a-entity>
+
+                    <!-- new added by gargi-->
+                    <a-entity id="syringeSpritesheet01" geometry="primitive: plane; width: 0.75; height: 0.75;"
+                    rotation="0 0 90"
+                    material="shader: flat;src: #syringeSpritesheetSrc01; transparent:true; opacity: 0; alphaTest:false; depthTest:false;"
+                    position="0 0 1" scale="1 1 1"></a-entity>
+
+                    <a-entity id="syringeSpritesheet02" geometry="primitive: plane; width: 0.75; height: 0.75;"
+                    rotation="0 0 90"
+                    material="shader: flat;src: #syringeSpritesheetSrc02; transparent:true; opacity: 0; alphaTest:false; depthTest:false;"
+                    position=".2 -0.325 1" scale="1 1 1"></a-entity>
+
+                    <a-entity id="syringeSpritesheet03" geometry="primitive: plane; width: 0.75; height: 0.75;"
+                    rotation="0 0 90"
+                    material="shader: flat;src: #syringeSpritesheetSrc03; transparent:true; opacity: 0; alphaTest:false; depthTest:false;"
+                    position="-.2 -0.325 1" scale="1 1 1"></a-entity>
 
                 <!-- 
                         Methods
