@@ -81,7 +81,8 @@ function startAnimationCommonCauses() {
 
     if (TIMELINE_DETAILS.isStopAnimation)
         return
-
+    infoTextParaBottom.innerHTML = 'Hair fall is caused by various factors including'
+    infoTextBottom.classList.add('show')
     audioSource.setAttribute('src', './assets/audio/man/common-causes/maleVO_Man_CommonCauses_Part1_v1.mp3')
     audioElement.load()
     mainScreen.classList.add('hide')
@@ -97,8 +98,7 @@ function startAnimationCommonCauses() {
 
     // Animating Dna
     TIMEOUTS.push(setTimeout(() => {
-          infoTextParaBottom.innerHTML = 'Hair fall is caused by various factors including'
-          infoTextBottom.classList.add('show')
+        
         if (TIMELINE_DETAILS.isStopAnimation)
             return
 
