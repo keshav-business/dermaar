@@ -568,7 +568,7 @@ function showTestimonials() {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
         faceLine.setAttribute('animation', 'property: material.opacity; to: .75; dur: 500')
-        infoTextParaBottom.innerHTML = 'Face Lift Treatment'
+        infoTextParaBottom.innerHTML = 'Thread Lift Treatment'
         infoTextBottom.classList.add('show')
 
         let animation = { progress: 0 };
@@ -597,8 +597,10 @@ function showTestimonials() {
 
     // Animate methods
     TIMEOUTS.push(setTimeout(() => {
+      
         if (TIMELINE_DETAILS.isStopAnimation)
             return
+         
         baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 0; dur: 100')
         faceLine.setAttribute('animation', 'property: material.opacity; to: 0; dur: 100')
         baseFace.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')

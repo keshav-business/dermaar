@@ -14,8 +14,8 @@ const messages = [
     'Dirt and Pollutions',
     'Triggering Access & infection ',
     'B 12 Supplements & Medications',
-    'Disrupt your Body',
-     'Having acne can be Stressfull'
+    'Disrupt your Body Natural Balance',
+     'By dermatologist suggestion acne can be cured'
 ];
 
 let index = 0;
@@ -359,7 +359,7 @@ function startAnimationTreatments() {
 
     if (TIMELINE_DETAILS.isAnimationPlaying)
         return
-
+infoTextParaBottom.innerHTML = ''
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
     TIMELINE_DETAILS.isAnimationPlaying = true
