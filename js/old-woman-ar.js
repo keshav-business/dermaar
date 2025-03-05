@@ -172,19 +172,19 @@ setTimeout(() => {
 setTimeout(() => {
     syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
     syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
-}, 6000);
+}, 7000);
 
 // At 9 seconds, second sheet appears (after third)
 setTimeout(() => {
     syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
     syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
-}, 15000);
+}, 9000);
 
 // At 12 seconds, both second and third disappear
 setTimeout(() => {
     syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
     syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
-}, 20000);
+}, 17000);
 
         
        // 2-second delay
