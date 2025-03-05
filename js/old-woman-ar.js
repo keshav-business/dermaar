@@ -141,8 +141,7 @@ function startAnimationCommonCauses() {
                 }
             )
         baseFace.setAttribute('animation', 'property: material.opacity; to: 0; dur: 2500')
-        syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-        syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+      
         // tween.start();
 
     }, 1.5 * ANIMATION_DELAY_CONSTANT))
@@ -283,10 +282,30 @@ function startAnimationCommonCauses() {
             // Animate lips & cheeks
             syringeSpritesheet.setAttribute('position', '0.5 0 0.15')
             syringeSpritesheet.setAttribute('rotation', '0 0 90')
-            syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
-            syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-            syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
-         
+           // Show first spritesheet
+syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+
+// After 3 seconds, switch from first to second
+setTimeout(() => {
+    syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
+    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+    syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+}, 3000);
+
+// After another 3 seconds, switch from second to third
+setTimeout(() => {
+    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
+    syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+    syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+}, 6000);
+
+// After another 3 seconds, turn off both second and third sprites
+setTimeout(() => {
+    syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
+    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
+}, 9000);
+
             syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;')
             syringeSpritesheet.setAttribute('animation__1', `property: position; to: 0.375 -0.09 .15; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             // syringeSpritesheet.setAttribute('animation__2', `property: rotation; to: 0 0 90; delay:3500; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
@@ -297,8 +316,7 @@ function startAnimationCommonCauses() {
             }, 1.25 * ANIMATION_DELAY_CONSTANT))
             lips.setAttribute('animation', 'property: material.opacity; to: 1; dur: 1500;delay:1250;')
 
-            syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-            syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;'); 
+            
             syringeSpritesheet.setAttribute('animation__3', `property: rotation; to: 0 0 270; delay:3500; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             syringeSpritesheet.setAttribute('animation__4', `property: position; from: 0.375 -0.09 .1; to: -0.45 0.115 .15;delay:3400; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             syringeSpritesheet.setAttribute('sprite-sheet', 'progress', 0);
@@ -315,8 +333,7 @@ function startAnimationCommonCauses() {
                 if (TIMELINE_DETAILS.isStopAnimation)
                     return
                 syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 500;')
-                syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
-                syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
+               
                 infoTextParaBottom.innerHTML = 'Botox & Fillers Treatment'
                 // capsuleGroup.object3D.visible = false;
                 // fastFood.object3D.visible = false;
