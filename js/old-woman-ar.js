@@ -213,7 +213,30 @@ function startAnimationCommonCauses() {
             forehead.setAttribute('animation', `property: material.opacity; to: 1; delay:6000; dur: ${1 * ANIMATION_DELAY_CONSTANT}`)
           
 
-           
+             // Show first spritesheet
+syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+
+// After 3 seconds, switch from first to second
+setTimeout(() => {
+    syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
+    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+    syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+}, 3000);
+
+// After another 3 seconds, switch from second to third
+setTimeout(() => {
+    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
+    syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
+    syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
+}, 6000);
+
+// After another 3 seconds, turn off both second and third sprites
+setTimeout(() => {
+    syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
+    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
+}, 9000);
+
 
             // syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
             // syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150;delay:0')
@@ -282,30 +305,7 @@ function startAnimationCommonCauses() {
             // Animate lips & cheeks
             syringeSpritesheet.setAttribute('position', '0.5 0 0.15')
             syringeSpritesheet.setAttribute('rotation', '0 0 90')
-           // Show first spritesheet
-syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-syringeSpritesheet01.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
-
-// After 3 seconds, switch from first to second
-setTimeout(() => {
-    syringeSpritesheet01.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
-    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-    syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
-}, 3000);
-
-// After another 3 seconds, switch from second to third
-setTimeout(() => {
-    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
-    syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
-    syringeSpritesheet03.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
-}, 6000);
-
-// After another 3 seconds, turn off both second and third sprites
-setTimeout(() => {
-    syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
-    syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
-}, 9000);
-
+         
             syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;')
             syringeSpritesheet.setAttribute('animation__1', `property: position; to: 0.375 -0.09 .15; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
             // syringeSpritesheet.setAttribute('animation__2', `property: rotation; to: 0 0 90; delay:3500; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
