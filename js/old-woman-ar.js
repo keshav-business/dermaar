@@ -184,7 +184,7 @@ setTimeout(() => {
 setTimeout(() => {
     syringeSpritesheet03.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
     syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 0; dur: 150');
-}, 14000);
+}, 9000);
 
         
        // 2-second delay
