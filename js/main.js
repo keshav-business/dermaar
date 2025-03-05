@@ -15,7 +15,7 @@ const messages = [
     'Triggering Access & infection ',
     'B 12 Supplements & Medications',
     'Disrupt your Body Natural Balance',
-     'By dermatologist suggestion acne can be cured'
+     'By dermatologist intervention acne can be cured'
 ];
 
 let index = 0;
