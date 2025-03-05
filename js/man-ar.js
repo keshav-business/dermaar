@@ -97,6 +97,8 @@ function startAnimationCommonCauses() {
 
     // Animating Dna
     TIMEOUTS.push(setTimeout(() => {
+          infoTextParaBottom.innerHTML = 'Hair fall is caused by various factors including'
+          infoTextBottom.classList.add('show')
         if (TIMELINE_DETAILS.isStopAnimation)
             return
 
@@ -107,7 +109,7 @@ function startAnimationCommonCauses() {
         testVar = dna
         dna.setAttribute('animation', 'property: material.opacity; to: .75; dur: 500')
         infoTextParaBottom.innerHTML = 'Heredity & Genetics'
-        infoTextBottom.classList.add('show')
+     
 
         let animation = { progress: 0 };
 
@@ -160,7 +162,7 @@ function startAnimationCommonCauses() {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
 
-        infoTextParaBottom.innerHTML = 'Stress'
+        infoTextParaBottom.innerHTML = 'Stress Follow procedures'
 
         // Animate removal of hair
         baseFaceWithHair.setAttribute('animation', 'property: material.opacity; to: 0; dur: 5000')
@@ -211,7 +213,7 @@ function startAnimationCommonCauses() {
 
         // Remove Stress
         stress.setAttribute('animation', `property: material.opacity; to: 0; dur: ${.25 * ANIMATION_DELAY_CONSTANT}`)
-        infoTextParaBottom.innerHTML = 'Medication & Nutritional Dificiencies'
+        infoTextParaBottom.innerHTML = 'Nutritional deficiencies, and hair styling products'
 
         TIMEOUTS.push(setTimeout(() => {
 
@@ -276,7 +278,13 @@ function startAnimationCommonCauses() {
         fastFood.setAttribute('animation', `property: material.opacity; to: 0;delay:250; dur: ${.25 * ANIMATION_DELAY_CONSTANT}`)
         fastFood.removeAttribute('animation__1')
         fastFood.removeAttribute('animation__2')
-        infoTextParaBottom.innerHTML = 'Struggling with Hair Loss? Find solution'
+        infoTextParaBottom.innerHTML = 'Environmental factors like pollution and harsh weather can also contribute to hair damage. Stay mindful and consult a dermatologist for proper care.';
+
+        // Set timeout to clear the text after 6 seconds
+        setTimeout(() => {
+            infoTextParaBottom.innerHTML = ''; // Clears the text
+        }, 11000);
+        
 
         TIMEOUTS.push(setTimeout(() => {
 
@@ -294,7 +302,9 @@ function startAnimationCommonCauses() {
             TIMELINE_DETAILS.isAnimationPlaying = false
             TIMELINE_DETAILS.currentAnimationSeq = 1
         }, 300))
+        
     }, 22 * ANIMATION_DELAY_CONSTANT))
+    //  infoTextParaBottom.innerHTML = ''
 }
 
 function startAnimationTreatments() {
@@ -317,7 +327,7 @@ function startAnimationTreatments() {
     audioSource.setAttribute('src', './assets/audio/man/treatments/maleVo_Man_Treatments_Context_v1.mp3')
     audioElement.load()
     audioElement.play()
-    infoTextParaBottom.innerHTML = 'Hair Transplant'
+    infoTextParaBottom.innerHTML = 'While it is true that half of population suffers from hair loss, still it affects the self-confidence and beauty. Dermatologists understand your hair better'
     infoTextBottom.classList.add('show')
 
     // Animate Syringe for PRP
@@ -329,7 +339,7 @@ function startAnimationTreatments() {
         audioSource.setAttribute('src', './assets/audio/man/treatments/maleVO_Man_Treatments_PRP_v1.mp3')
         audioElement.load()
         audioElement.play()
-        infoTextParaBottom.innerHTML = 'PRP Therapy'
+        infoTextParaBottom.innerHTML = 'Platelet-rich plasma therapy uses your own blood rich in platelets to naturally rejuvenate hair follicles and promote healthier thicker hair growth'
         syringe.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
         medicineBottle.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
         syringe.setAttribute('animation__1', 'property: position; to: -.15 0.75 0.05; dur: 1500')
@@ -367,7 +377,7 @@ function startAnimationTreatments() {
         // Animate removal of hair
         // baseFaceWithHair.setAttribute('animation', 'property: material.opacity; to: 1; dur: 4000')
 
-        infoTextParaBottom.innerHTML = 'GFC Treatment'
+        infoTextParaBottom.innerHTML = 'Growth factor. Concentrate therapy is an advanced version of PRP, delivering pure growth factors for faster, more effective hair restoration with minimal inflammation'
         syringe.setAttribute('animation', 'property: material.opacity; to: 0; dur: 250')
         audioSource.setAttribute('src', './assets/audio/man/treatments/maleVO_Man_Treatments_GFC_v1.mp3')
         audioElement.load()
@@ -418,7 +428,7 @@ function startAnimationTreatments() {
             return
 
 
-        infoTextParaBottom.innerHTML = 'Hair Transplant'
+        infoTextParaBottom.innerHTML = 'If you have hair patches, then a hair transplant surgery not only looks to reverse hair loss symptoms but encourages new hair growth for years to come. The typical life cycle of a hair transplant is around 10 years.'
         syringe.setAttribute('animation', 'property: material.opacity; to: 0; dur: 250')
         medicineBottle.setAttribute('animation', 'property: material.opacity; to: 0; dur: 250')
         syringe.removeAttribute('animation__1')
@@ -430,6 +440,7 @@ function startAnimationTreatments() {
                 return
 
             audioSource.setAttribute('src', './assets/audio/man/treatments/maleVO_Man_Treatments_HairTransplant_v1.mp3')
+            
             audioElement.load()
             audioElement.play()
 
@@ -590,7 +601,11 @@ function startAnimationTreatments() {
                 return
 
             audioSource.setAttribute('src', './assets/audio/man/treatments/maleVO_Man_Treatments_Other_v1.mp3')
-            audioElement.load()
+             infoTextParaBottom.innerHTML = 'Other great treatments available are Exosome Treatment, which uses powerful cell messengers to boost hair growth, repair damage, and deliver unmatched results'
+             setTimeout(() => {
+                infoTextParaBottom.innerHTML = ''; // Clears the text
+            }, 9000);
+             audioElement.load()
             audioElement.play()
             baseFaceWithHair.setAttribute('animation__1', 'property: material.opacity; to: 1; dur: 1000')
             testimonialsBtn.classList.add('show-single')
@@ -603,7 +618,7 @@ function startAnimationTreatments() {
            
         }, 300))
 
-
+//  infoTextParaBottom.innerHTML = ''
     }, 49 * ANIMATION_DELAY_CONSTANT))
 }
 

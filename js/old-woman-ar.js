@@ -106,6 +106,8 @@ function startAnimationCommonCauses() {
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 1
     audioSource.setAttribute('src', './assets/audio/old-lady/botox/femaleVO_OldLady_Botox_Filler_Overview_v1.mp3')
+    infoTextParaBottom.innerHTML = 'Many people turn to Botox and Fillers treatments to maintain a youthful appearance, enhancing their confidence and rejuvenating their look.'
+    infoTextBottom.classList.add('show')
     baseBlurLayer.setAttribute('animation', 'property: material.opacity; to: .85; dur: 600')
     baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
     baseFaceWithFiller.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 500')
@@ -119,8 +121,7 @@ function startAnimationCommonCauses() {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
         faceLine.setAttribute('animation', 'property: material.opacity; to: .75; dur: 500')
-        infoTextParaBottom.innerHTML = 'Botox & Fillers Treatment'
-        infoTextBottom.classList.add('show')
+       
 
         let animation = { progress: 0 };
 
@@ -151,6 +152,7 @@ function startAnimationCommonCauses() {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
         audioSource.setAttribute('src', './assets/audio/old-lady/botox/femaleVO_OldLady_Botox_v1.mp3')
+          infoTextParaBottom.innerHTML = 'Botox relaxes facial muscles to smooth wrinkles and fine lines, giving you a youthful, refreshed look. Safe, quick, and effective for timeless beauty.'
         audioElement.load()
         audioElement.play()
 
@@ -199,7 +201,7 @@ setTimeout(() => {
         TIMEOUTS.push(setTimeout(() => {
             if (TIMELINE_DETAILS.isStopAnimation)
                 return
-            infoTextParaBottom.innerHTML = 'Botox Treatment'
+          
             // Start Animating Stress
             syringeSpritesheet.setAttribute('rotation', '0 0 90')
 
@@ -288,7 +290,7 @@ setTimeout(() => {
         TIMEOUTS.push(setTimeout(() => {
             if (TIMELINE_DETAILS.isStopAnimation)
                 return
-            infoTextParaBottom.innerHTML = 'Fillers Treatment'
+            infoTextParaBottom.innerHTML = 'Fillers restore volume, enhance contours and smooth wrinkles, giving you a natural, youthful appearance instantly'
             // Start Animating Stress
 
             let animation = { progress: 0 };
@@ -342,7 +344,7 @@ setTimeout(() => {
                     return
                 syringeSpritesheet.setAttribute('animation', 'property: material.opacity; to: 0; dur: 500;')
                
-                infoTextParaBottom.innerHTML = 'Botox & Fillers Treatment'
+                infoTextParaBottom.innerHTML = ''
                 // capsuleGroup.object3D.visible = false;
                 // fastFood.object3D.visible = false;
                 treatmentsBtn.classList.add('show-single')
@@ -368,6 +370,7 @@ function startAnimationTreatments() {
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 2
     audioSource.setAttribute('src', './assets/audio/old-lady/facelift/femaleVO_OldLady_FaceLift_Overview_v1.mp3')
+     infoTextParaBottom.innerHTML = 'Many people turn to facelift treatment to maintain a youthful appearance, enhancing their confidence and rejuvenating their look.'
     audioElement.load()
     audioElement.play()
 
@@ -383,7 +386,7 @@ function startAnimationTreatments() {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
         faceLine.setAttribute('animation', 'property: material.opacity; to: .75; dur: 500')
-        infoTextParaBottom.innerHTML = 'Face Lift Treatment'
+       
         infoTextBottom.classList.add('show')
 
         let animation = { progress: 0 };
@@ -418,7 +421,13 @@ function startAnimationTreatments() {
         audioElement.load()
         audioElement.play()
 
-        infoTextParaBottom.innerHTML = 'Face Lift Treatment'
+        infoTextParaBottom.innerHTML = 'Facelift can be done through Botox needleless treatment or derma fillers'
+        setTimeout(() => {
+            infoTextParaBottom.innerHTML = 'Our clinic offers non-invasive treatments to treat fine lines, deep creases, slack skin, thinning lips, sunken cheeks, big pores, acne scarring, and loss of face volume'; // Clears the text
+        }, 6000);
+        setTimeout(() => {
+            infoTextParaBottom.innerHTML = ''; // Clears the text
+        }, 19000);
 
         methodsSpritesheet.setAttribute('animation', 'property: material.opacity; to: 1; dur: 300;')
 
@@ -572,6 +581,7 @@ function showTestimonials() {
     testimonialsBtn.classList.remove('show-single')
     replayButton.classList.add("hide");
     audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady_ThreadLift_Overview_v1.mp3')
+    infoTextParaBottom.innerHTML = 'Many people turn to thread lift treatment to maintain a youthful appearance, enhancing their confidence and rejuvenating their look.'
     audioElement.load()
     audioElement.play()
     mainScreen.classList.add('hide')
@@ -593,7 +603,7 @@ function showTestimonials() {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
         faceLine.setAttribute('animation', 'property: material.opacity; to: .75; dur: 500')
-        infoTextParaBottom.innerHTML = 'Thread Lift Treatment'
+        
         infoTextBottom.classList.add('show')
 
         let animation = { progress: 0 };
@@ -629,7 +639,8 @@ function showTestimonials() {
         baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 0; dur: 100')
         faceLine.setAttribute('animation', 'property: material.opacity; to: 0; dur: 100')
         baseFace.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
-        infoTextParaBottom.innerHTML = 'Thread Lift Treatment'
+        infoTextParaBottom.innerHTML = 'ThreadLift is a non-invasive outpatient surgery that is marketed over the world as a lunchtime facelift or a weekend facelift.'
+         
         audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady_ThreadLift_Scene1_Part1_v1.mp3')
         audioElement.load()
 
@@ -726,6 +737,7 @@ function showTestimonials() {
         whiteCircleRight1.setAttribute('animation', 'property: material.opacity; to: 1; dur: 150;delay:6000;')
 
         TIMEOUTS.push(setTimeout(() => {
+            infoTextParaBottom.innerHTML = 'This process normally takes about an hour and is done under local anesthesia, which is often combined with conscious sedation'
             audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady_ThreadLift_Scene1_Part2_v1.mp3')
             audioElement.load()
             audioElement.play()
@@ -745,8 +757,11 @@ function showTestimonials() {
     TIMEOUTS.push(setTimeout(() => {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
-
-        audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady_ThreadLift_End_v1.mp3')
+infoTextParaBottom.innerHTML = 'The patient gains a more youthful, rested appearance in a relatively short period of time with little social downtime and minimal scarring'
+setTimeout(() => {
+    infoTextParaBottom.innerHTML = ''; // Clears the text
+}, 9000);       
+audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady_ThreadLift_End_v1.mp3')
         audioElement.load()
         audioElement.play()
 

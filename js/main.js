@@ -11,11 +11,12 @@ const TIMELINE_DETAILS = {
 const TIMEOUTS = []
 let AR_READY = false
 const messages = [
-    'Dirt and Pollutions',
-    'Triggering Access & infection ',
-    'B 12 Supplements & Medications',
-    'Disrupt your Body Natural Balance',
-     'By dermatologist intervention acne can be cured'
+    'Acne is caused by various factors including dirt and pollution clogging pores, ',
+    ' hormonal imbalances triggering excess oil production, cosmetics irritating the skin, high sugar,',
+    ' dairy B12 supplements, whey protein, stress, and medications',
+    'These can disrupt your body natural balance  We understand how having acne can be stressful By dermatologist intervention',
+     'It acne can be cured',
+     ''
 ];
 
 let index = 0;
@@ -96,6 +97,24 @@ function startAnimationCommonCauses() {
 
     audioSource.setAttribute('src', './assets/audio/young-lady/common-causes/femaleVO_YoungLady_CommonCauses_CombinedVO_v2.mp3')
     audioElement.load()
+    function changeTextOnce() {
+        messages.forEach((message, index) => {
+            let delay;
+            
+            if (index === messages.length - 1) {
+                delay = (index - 1) * 6200 + 3000; // Last second message appears 3s before last
+            } else {
+                delay = index * 6200; // Normal 6.2s delay
+            }
+    
+            setTimeout(() => {
+                infoTextParaBottom.innerHTML = message;
+                infoTextBottom.classList.add('show');
+            }, delay);
+        });
+    }
+    changeTextOnce(); // Call the function to execute once
+
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
     TIMELINE_DETAILS.isAnimationPlaying = true
@@ -115,17 +134,7 @@ function startAnimationCommonCauses() {
         // audioElement.play()
         smoke.setAttribute('animation', 'property: material.opacity; to: 1; dur: 100')
         dirt.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;delay:1000;')
-        function changeTextOnce() {
-            messages.forEach((message, index) => {
-                setTimeout(() => {
-                    infoTextParaBottom.innerHTML = message;
-                    infoTextBottom.classList.add('show');
-                }, index * 5000); // Changes text every 5 seconds
-            });
-        }
         
-        changeTextOnce(); // Call the function to execute once
-    
         let animation = { progress: 0 };
 
         const tween = gsap.timeline(
@@ -349,17 +358,20 @@ function startAnimationCommonCauses() {
         treatmentsBtn.classList.add('show-single')
         replayButton.classList.add('show')
         showReplayButton();
-        
+      
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
+         
     }, 22.8 * ANIMATION_DELAY_CONSTANT))
+
+
 }
 
 function startAnimationTreatments() {
 
     if (TIMELINE_DETAILS.isAnimationPlaying)
         return
-infoTextParaBottom.innerHTML = ''
+infoTextParaBottom.innerHTML = 'Acne treatment focuses on reducing inflammation, unclogging pores, and healing the skin to restore confidence.'
     mainScreen.classList.add('hide')
     backBtn.classList.add('show')
     TIMELINE_DETAILS.isAnimationPlaying = true
@@ -383,7 +395,7 @@ infoTextParaBottom.innerHTML = ''
         audioSource.setAttribute('src', './assets/audio/young-lady/treatments/femaleVO_YoungLady_Treatment_Topical_Antibiotics_v1.mp3')
         audioElement.load()
         audioElement.play()
-        infoTextParaBottom.innerHTML = 'Topical and antibiotics'
+        infoTextParaBottom.innerHTML = 'Topical treatments like retinoids and benzoyl peroxide target acne at its source, while antibiotics reduce bacterial growth and inflammation.'
         infoTextBottom.classList.add('show')
 
         TIMEOUTS.push(setTimeout(() => {
@@ -531,7 +543,7 @@ infoTextParaBottom.innerHTML = ''
         audioSource.setAttribute('src', './assets/audio/young-lady/treatments/femaleVO_YoungLady_Treatment_ChemicalPeels_v1.mp3')
         audioElement.load()
         audioElement.play()
-        infoTextParaBottom.innerHTML = 'Chemical peels'
+        infoTextParaBottom.innerHTML = 'Chemical peels exfoliate the skin, removing dead cells and improving texture, revealing smoother and clearer skin underneath.'
 
         TIMEOUTS.push(setTimeout(() => {
             faceMaskBrush.setAttribute('position', '-0.05 0.4 0.01')
@@ -565,7 +577,7 @@ infoTextParaBottom.innerHTML = ''
         faceMask.setAttribute('animation', 'property: material.opacity; to: 0; dur: 500; delay:0;')
 
         laser.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
-        infoTextParaBottom.innerHTML = 'Laser resurfacing & Microdermabrasion'
+        infoTextParaBottom.innerHTML = 'Laser resurfacing targets deeper acne scars and promotes collagen production, leaving your skin rejuvenated and blemish-free.'
 
         let animation = { progress: 0 };
 
@@ -611,7 +623,7 @@ infoTextParaBottom.innerHTML = ''
         showReplayButton();
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
-
+ infoTextParaBottom.innerHTML = ''
     }, 40.5 * ANIMATION_DELAY_CONSTANT))
 }
 
