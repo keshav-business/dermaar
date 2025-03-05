@@ -178,7 +178,7 @@ setTimeout(() => {
 setTimeout(() => {
     syringeSpritesheet02.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250');
     syringeSpritesheet02.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000; easing: easeInOutElastic;');
-}, 9000);
+}, 6000);
 
 // At 12 seconds, both second and third disappear
 setTimeout(() => {
