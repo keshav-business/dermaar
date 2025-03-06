@@ -152,7 +152,7 @@ function startAnimationCommonCauses() {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
         audioSource.setAttribute('src', './assets/audio/old-lady/botox/femaleVO_OldLady_Botox_v1.mp3')
-          infoTextParaBottom.innerHTML = 'Botox relaxes facial muscles to smooth wrinkles and fine lines, giving you a youthful, refreshed look. Safe, quick, and effective for timeless beauty.'
+          infoTextParaBottom.innerHTML = 'Botox relaxes facial muscles to smooth wrinkles and fine lines, giving you a youthful refreshed look. Safe, quick and effective for timeless beauty.'
         audioElement.load()
         audioElement.play()
 
@@ -424,7 +424,7 @@ function startAnimationTreatments() {
 
         infoTextParaBottom.innerHTML = 'Facelift can be done through Botox, needleless treatment or dermal fillers.'
         setTimeout(() => {
-            infoTextParaBottom.innerHTML = 'Our clinic offers non-invasive treatments to treat fine lines, deep creases, slack skin, thinning lips, sunken cheeks, big pores, acne scarring, and loss of face volume.'; // Clears the text
+            infoTextParaBottom.innerHTML = 'Our clinic offers non-invasive treatments to treat fine lines, deep creases, slack skin, thinning lips, sunken cheeks, big pores, acne scarring and loss of face volume.'; // Clears the text
         }, 6000);
         setTimeout(() => {
             infoTextParaBottom.innerHTML = ''; // Clears the text
@@ -738,7 +738,7 @@ function showTestimonials() {
         whiteCircleRight1.setAttribute('animation', 'property: material.opacity; to: 1; dur: 150;delay:6000;')
 
         TIMEOUTS.push(setTimeout(() => {
-            infoTextParaBottom.innerHTML = 'This process normally takes about an hour and is done under local anesthesia, which is often combined with conscious sedation'
+            infoTextParaBottom.innerHTML = 'This process normally takes about an hour and is done under local anesthesia which is often combined with conscious sedation'
             audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady_ThreadLift_Scene1_Part2_v1.mp3')
             audioElement.load()
             audioElement.play()

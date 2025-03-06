@@ -13,7 +13,7 @@ let AR_READY = false
 const messages = [
     'Acne is caused by various factors, including dirt and pollution clogging pores.',
     'Hormonal imbalances triggering excess oil production, cosmetics irritating the skin, high sugar,',
-    'Dairy, B12 supplements, whey protein, stress, and medications.',
+    'Dairy, B12 supplements, whey protein, stress and medications.',
     'These can disrupt your body\'s natural balance. We understand how having acne can be stressful. By dermatologist intervention,',
     'It acne can be cured.',
     ''
@@ -373,7 +373,8 @@ function startAnimationTreatments() {
     if (TIMELINE_DETAILS.isAnimationPlaying)
         return
 infoTextParaBottom.innerHTML = 'Acne treatment focuses on reducing inflammation, unclogging pores, and healing the skin to restore confidence.'
-    mainScreen.classList.add('hide')
+infoTextBottom.classList.add('show')  
+mainScreen.classList.add('hide')
     backBtn.classList.add('show')
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 2
@@ -397,7 +398,7 @@ infoTextParaBottom.innerHTML = 'Acne treatment focuses on reducing inflammation,
         audioElement.load()
         audioElement.play()
         infoTextParaBottom.innerHTML = 'Topical treatments like retinoids and benzoyl peroxide target acne at its source, while antibiotics reduce bacterial growth and inflammation.'
-        infoTextBottom.classList.add('show')
+       
 
         TIMEOUTS.push(setTimeout(() => {
 
@@ -578,7 +579,7 @@ infoTextParaBottom.innerHTML = 'Acne treatment focuses on reducing inflammation,
         faceMask.setAttribute('animation', 'property: material.opacity; to: 0; dur: 500; delay:0;')
 
         laser.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
-        infoTextParaBottom.innerHTML = 'Laser resurfacing targets deeper acne scars and promotes collagen production, leaving your skin rejuvenated and blemish-free.'
+        infoTextParaBottom.innerHTML = 'Laser resurfacing targets deeper acne scars and promotes collagen production leaving your skin rejuvenated and blemish-free.'
 
         let animation = { progress: 0 };
 

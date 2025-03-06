@@ -601,7 +601,7 @@ function startAnimationTreatments() {
                 return
 
             audioSource.setAttribute('src', './assets/audio/man/treatments/maleVO_Man_Treatments_Other_v1.mp3')
-             infoTextParaBottom.innerHTML = 'Other great treatments available are Exosome Treatment, which uses powerful cell messengers to boost hair growth, repair damage, and deliver unmatched results.'
+             infoTextParaBottom.innerHTML = 'Other great treatments available are Exosome Treatment, which uses powerful cell messengers to boost hair growth, repair damage and deliver unmatched results.'
              setTimeout(() => {
                 infoTextParaBottom.innerHTML = ''; // Clears the text
             }, 9000);
