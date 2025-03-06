@@ -11,13 +11,14 @@ const TIMELINE_DETAILS = {
 const TIMEOUTS = []
 let AR_READY = false
 const messages = [
-    'Acne is caused by various factors including dirt and pollution clogging pores, ',
-    ' hormonal imbalances triggering excess oil production, cosmetics irritating the skin, high sugar,',
-    ' dairy B12 supplements, whey protein, stress, and medications',
-    'These can disrupt your body natural balance  We understand how having acne can be stressful By dermatologist intervention',
-     'It acne can be cured',
-     ''
+    'Acne is caused by various factors, including dirt and pollution clogging pores.',
+    'Hormonal imbalances triggering excess oil production, cosmetics irritating the skin, high sugar,',
+    'Dairy, B12 supplements, whey protein, stress, and medications.',
+    'These can disrupt your body\'s natural balance. We understand how having acne can be stressful. By dermatologist intervention,',
+    'It acne can be cured.',
+    ''
 ];
+
 
 let index = 0;
 // AR Elements
