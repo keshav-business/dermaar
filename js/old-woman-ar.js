@@ -422,9 +422,9 @@ function startAnimationTreatments() {
         audioElement.load()
         audioElement.play()
 
-        infoTextParaBottom.innerHTML = 'Facelift can be done through Botox needleless treatment or derma fillers'
+        infoTextParaBottom.innerHTML = 'Facelift can be done through Botox, needleless treatment or dermal fillers.'
         setTimeout(() => {
-            infoTextParaBottom.innerHTML = 'Our clinic offers non-invasive treatments to treat fine lines, deep creases, slack skin, thinning lips, sunken cheeks, big pores, acne scarring, and loss of face volume'; // Clears the text
+            infoTextParaBottom.innerHTML = 'Our clinic offers non-invasive treatments to treat fine lines, deep creases, slack skin, thinning lips, sunken cheeks, big pores, acne scarring, and loss of face volume.'; // Clears the text
         }, 6000);
         setTimeout(() => {
             infoTextParaBottom.innerHTML = ''; // Clears the text
@@ -758,7 +758,7 @@ function showTestimonials() {
     TIMEOUTS.push(setTimeout(() => {
         if (TIMELINE_DETAILS.isStopAnimation)
             return
-infoTextParaBottom.innerHTML = 'The patient gains a more youthful, rested appearance in a relatively short period of time with little social downtime and minimal scarring'
+infoTextParaBottom.innerHTML = 'The patient gains a more youthful, rested appearance in a relatively short period of time with little social downtime and minimal scarring.'
 setTimeout(() => {
     infoTextParaBottom.innerHTML = ''; // Clears the text
 }, 9000);       

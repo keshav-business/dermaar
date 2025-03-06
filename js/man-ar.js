@@ -213,7 +213,7 @@ function startAnimationCommonCauses() {
 
         // Remove Stress
         stress.setAttribute('animation', `property: material.opacity; to: 0; dur: ${.25 * ANIMATION_DELAY_CONSTANT}`)
-        infoTextParaBottom.innerHTML = 'Nutritional deficiencies, and hair styling products'
+        infoTextParaBottom.innerHTML = 'Nutritional deficiencies and hair styling products'
 
         TIMEOUTS.push(setTimeout(() => {
 
@@ -327,7 +327,7 @@ function startAnimationTreatments() {
     audioSource.setAttribute('src', './assets/audio/man/treatments/maleVo_Man_Treatments_Context_v1.mp3')
     audioElement.load()
     audioElement.play()
-    infoTextParaBottom.innerHTML = 'While it is true that half of population suffers from hair loss, still it affects the self-confidence and beauty. Dermatologists understand your hair better'
+    infoTextParaBottom.innerHTML = 'While it is true that half of population suffers from hair loss, still it affects the self-confidence and beauty. Dermatologists understand your hair better.'
     infoTextBottom.classList.add('show')
 
     // Animate Syringe for PRP
@@ -339,7 +339,7 @@ function startAnimationTreatments() {
         audioSource.setAttribute('src', './assets/audio/man/treatments/maleVO_Man_Treatments_PRP_v1.mp3')
         audioElement.load()
         audioElement.play()
-        infoTextParaBottom.innerHTML = 'Platelet-rich plasma therapy uses your own blood rich in platelets to naturally rejuvenate hair follicles and promote healthier thicker hair growth'
+        infoTextParaBottom.innerHTML = 'Platelet-rich plasma therapy uses your own blood rich in platelets, to naturally rejuvenate hair follicles and promote healthier, thicker hair growth.'
         syringe.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
         medicineBottle.setAttribute('animation', 'property: material.opacity; to: 1; dur: 250')
         syringe.setAttribute('animation__1', 'property: position; to: -.15 0.75 0.05; dur: 1500')
@@ -377,7 +377,7 @@ function startAnimationTreatments() {
         // Animate removal of hair
         // baseFaceWithHair.setAttribute('animation', 'property: material.opacity; to: 1; dur: 4000')
 
-        infoTextParaBottom.innerHTML = 'Growth factor. Concentrate therapy is an advanced version of PRP, delivering pure growth factors for faster, more effective hair restoration with minimal inflammation'
+        infoTextParaBottom.innerHTML = 'Growth factor concentrate therapy is an advanced version of PRP, delivering pure growth factors for faster, more effective hair restoration with minimal inflammation.'
         syringe.setAttribute('animation', 'property: material.opacity; to: 0; dur: 250')
         audioSource.setAttribute('src', './assets/audio/man/treatments/maleVO_Man_Treatments_GFC_v1.mp3')
         audioElement.load()
@@ -601,7 +601,7 @@ function startAnimationTreatments() {
                 return
 
             audioSource.setAttribute('src', './assets/audio/man/treatments/maleVO_Man_Treatments_Other_v1.mp3')
-             infoTextParaBottom.innerHTML = 'Other great treatments available are Exosome Treatment, which uses powerful cell messengers to boost hair growth, repair damage, and deliver unmatched results'
+             infoTextParaBottom.innerHTML = 'Other great treatments available are Exosome Treatment, which uses powerful cell messengers to boost hair growth, repair damage, and deliver unmatched results.'
              setTimeout(() => {
                 infoTextParaBottom.innerHTML = ''; // Clears the text
             }, 9000);
