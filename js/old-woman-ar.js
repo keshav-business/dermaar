@@ -803,6 +803,7 @@ audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady
             tweenCircleR2.play()
             replayButton.classList.remove("hide");
             document.getElementById("reloadButton").style.display = "block"; 
+            document.getElementById("replayButton").style.left = "41%";
             showReplayButton();
             replayButton.classList.add("show");
             TIMELINE_DETAILS.isAnimationPlaying = false
@@ -944,6 +945,7 @@ async function keepScreenAwake() {
     }
 }
 function goBack() {
+    document.getElementById("replayButton").style.left = "50%";
     resetAnimation();
     TIMELINE_DETAILS.isStopAnimation = true;
     arSystem.pause(); // Stop the camera
