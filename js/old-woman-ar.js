@@ -845,6 +845,9 @@ function startAnimation() {
 }
 
 function resetAnimation() {
+    document.querySelector("#syringeSpritesheet01").setAttribute("material", "opacity", 0);
+    document.querySelector("#syringeSpritesheet02").setAttribute("material", "opacity", 0);
+    document.querySelector("#syringeSpritesheet03").setAttribute("material", "opacity", 0);
     // TIMELINE_DETAILS.currentAnimationSeq = 1
     TIMELINE_DETAILS.isAnimationPlaying = false
     for (var i = 0; i < TIMEOUTS.length; i++) {
