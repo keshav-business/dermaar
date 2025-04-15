@@ -468,7 +468,10 @@
             const originalGoToAnimation = goToAnimation;
             goToAnimation = function(animationSeq) {
                 originalGoToAnimation(animationSeq);
-                startRatingCountdown();
+                // Don't show rating button for the 3rd experience (Before & After Pictures)
+                if (animationSeq !== 3) {
+                    startRatingCountdown();
+                }
             };
         }
 
