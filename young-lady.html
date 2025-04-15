@@ -51,7 +51,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            display: none;
+            display: block;
             opacity: 0.5;
         }
         #rateExperienceBtn:disabled {
@@ -86,6 +86,16 @@
     <main id="mainContent">
         <div id="backBtn" onclick="goBack()">
             <img src="./assets/icons/back-icon.png" alt="Back">
+            <script>
+                function goBack() {
+                    // Clear any existing rating countdown timer
+                    if (window.ratingTimer) {
+                        clearTimeout(window.ratingTimer);
+                        window.ratingTimer = null;
+                    }
+                    window.history.back();
+                }
+            </script>
         </div>
         <div id="replayButton" class="hide">
             <img src="./assets/images/replay.png" alt="Back">
