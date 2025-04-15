@@ -451,8 +451,8 @@
     <script src="./js/menu.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
-        // Start countdown when AR experience starts
-        document.addEventListener('arStart', function() {
+        // Start countdown when animation starts
+        function startRatingCountdown() {
             const rateBtn = document.getElementById('rateExperienceBtn');
             rateBtn.style.display = 'block';
             
@@ -467,7 +467,16 @@
                     rateBtn.textContent = 'Rate Experience';
                 }
             }, 1000);
-        });
+        }
+
+        // Hook into animation start
+        if (typeof goToAnimation === 'function') {
+            const originalGoToAnimation = goToAnimation;
+            goToAnimation = function(animationSeq) {
+                originalGoToAnimation(animationSeq);
+                startRatingCountdown();
+            };
+        }
 
         // Show rating modal
         function showRating() {
