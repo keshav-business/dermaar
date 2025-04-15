@@ -43,6 +43,17 @@
         .star-rating .fa-star.active {
             color: #ffd700;
         }
+        .experience-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .rate-btn {
+            width: 100%;
+            opacity: 0.5;
+        }
+        .rate-btn:disabled {
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -119,27 +130,36 @@
             </h3>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card border rounded-4 border-0 my-2" onclick="goToExperience(1)">
-                        <img src="./assets/images/young-lady-thumbnail.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title text-white">Know Commonly caused skin issues at young age</h5>
+                    <div class="experience-container">
+                        <div class="card border rounded-4 border-0 my-2" onclick="handleExperience(1)">
+                            <img src="./assets/images/young-lady-thumbnail.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-white">Know Commonly caused skin issues at young age</h5>
+                            </div>
                         </div>
+                        <button id="rateBtn1" class="btn btn-primary mt-2 rate-btn" onclick="showRating(1)" disabled>Rate Experience (10s)</button>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card border rounded-4 border-0 my-2" onclick="goToExperience(2)">
-                        <img src="./assets/images/man-thumbnail.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title text-white">Struggling with Hair Loss? Find solution</h5>
+                    <div class="experience-container">
+                        <div class="card border rounded-4 border-0 my-2" onclick="handleExperience(2)">
+                            <img src="./assets/images/man-thumbnail.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-white">Struggling with Hair Loss? Find solution</h5>
+                            </div>
                         </div>
+                        <button id="rateBtn2" class="btn btn-primary mt-2 rate-btn" onclick="showRating(2)" disabled>Rate Experience (10s)</button>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card border rounded-4 border-0 my-2" onclick="goToExperience(3)">
-                        <img src="./assets/images/old-lady-thumbnail.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title text-white">Concerned about Ageing? Find Solutions</h5>
+                    <div class="experience-container">
+                        <div class="card border rounded-4 border-0 my-2" onclick="handleExperience(3)">
+                            <img src="./assets/images/old-lady-thumbnail.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-white">Concerned about Ageing? Find Solutions</h5>
+                            </div>
                         </div>
+                        <button id="rateBtn3" class="btn btn-primary mt-2 rate-btn" onclick="showRating(3)" disabled>Rate Experience (10s)</button>
                     </div>
                 </div>
             </div>
@@ -235,15 +255,48 @@
             });
         }
 
-        // Modify startExperience function to show star rating after experience
-        const originalStartExperience = window.startExperience;
-        window.startExperience = function() {
-            if (originalStartExperience) originalStartExperience();
-            // Show star rating after a delay (simulating end of experience)
-            setTimeout(() => {
-                document.getElementById('starRatingModal').style.display = 'block';
-                document.querySelector('.star-rating').style.display = 'block';
+        // Handle experience selection
+        function handleExperience(experienceId) {
+            // First check if user is registered
+            const userEmail = localStorage.getItem('userEmail');
+            if (!userEmail) {
+                alert('Please register first!');
+                document.getElementById('registrationModal').style.display = 'block';
+                return;
+            }
+
+            // Reset all rate buttons
+            document.querySelectorAll('.rate-btn').forEach(btn => {
+                btn.disabled = true;
+                btn.textContent = 'Rate Experience (10s)';
+            });
+
+            // Call original goToExperience function
+            if (typeof goToExperience === 'function') {
+                goToExperience(experienceId);
+            }
+
+            // Start countdown for the rate button
+            let countdown = 10;
+            const rateBtn = document.getElementById(`rateBtn${experienceId}`);
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                rateBtn.textContent = `Rate Experience (${countdown}s)`;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    rateBtn.disabled = false;
+                    rateBtn.style.opacity = '1';
+                    rateBtn.textContent = 'Rate Experience';
+                }
             }, 1000);
+        }
+
+        // Show rating modal for specific experience
+        function showRating(experienceId) {
+            // Store current experience ID for the feedback submission
+            localStorage.setItem('currentExperienceId', experienceId);
+            document.getElementById('starRatingModal').style.display = 'block';
+            document.querySelector('.star-rating').style.display = 'block';
         };
     </script>
 </body>
