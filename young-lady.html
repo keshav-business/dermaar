@@ -51,7 +51,7 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            display: block;
+            display: none;
             opacity: 0.5;
         }
         #rateExperienceBtn:disabled {
@@ -186,7 +186,13 @@
             <script>
                 function startExperience(seq) {
                     goToAnimation(seq);
-                    startRatingCountdown();
+                    // Only start rating countdown for AR experiences (1 and 2)
+                    if (seq === 1 || seq === 2) {
+                        const scene = document.querySelector('a-scene');
+                        scene.addEventListener('targetFound', function() {
+                            startRatingCountdown();
+                        });
+                    }
                 }
             </script>
         </div>

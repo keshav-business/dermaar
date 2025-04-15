@@ -772,6 +772,14 @@ function goBack() {
     if (replayButton) {
         replayButton.classList.add('hide'); 
     }
+
+    // ✅ Hide the rate experience button
+    const rateExperienceBtn = document.getElementById('rateExperienceBtn');
+    if (rateExperienceBtn) {
+        rateExperienceBtn.style.display = 'none';
+        rateExperienceBtn.disabled = true;
+    }
+
     // Mark camera as inactive
     sessionStorage.setItem("cameraActive", "false");
 }
