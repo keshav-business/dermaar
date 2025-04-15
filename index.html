@@ -44,6 +44,15 @@
             color: #ffd700;
         }
 
+        .custom-submit-btn {
+            background: none;
+            border: 1px solid #888;
+            transition: all 0.3s;
+        }
+
+        .custom-submit-btn:hover {
+            background: rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 
@@ -65,7 +74,7 @@
                     <label for="phone" class="form-label">Phone</label>
                     <input type="tel" class="form-control" id="phone" required>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+                <button type="submit" class="btn custom-submit-btn w-100">Submit</button>
             </form>
         </div>
     </div>
