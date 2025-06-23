@@ -46,7 +46,7 @@ const faceMask = document.querySelector('#faceMask');
 const facePeel = document.querySelector('#facePeel');
 const faceMaskBrush = document.querySelector('#faceMaskBrush');
 const laser = document.querySelector('#laser');
-
+const rateExperienceBtn = document.querySelector('#rateExperienceBtn');
 // Audio Elements
 const audioElement = document.querySelector('#audioElement');
 const audioSource = document.querySelector('#audioSource');
@@ -358,6 +358,9 @@ function startAnimationCommonCauses() {
        
         treatmentsBtn.classList.add('show-single')
         replayButton.classList.add('show')
+         setTimeout(function () {
+    rateExperienceBtn.style.display = "block";
+}, 7000);
         showReplayButton();
       
         TIMELINE_DETAILS.isAnimationPlaying = false
@@ -388,7 +391,9 @@ mainScreen.classList.add('hide')
 
     treatmentsBtn.classList.remove('show-single')
     replayButton.classList.add('hide')
-  
+
+    rateExperienceBtn.style.display = "none";
+
     // Start Animating Capsule & Lotion
     TIMEOUTS.push(setTimeout(() => {
         if (TIMELINE_DETAILS.isStopAnimation)
@@ -622,6 +627,9 @@ mainScreen.classList.add('hide')
         laser.removeAttribute('animation__4')
         testimonialsBtn.classList.add('show-single')
         replayButton.classList.add('show')
+       
+    rateExperienceBtn.style.display = "block";
+
         showReplayButton();
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
@@ -642,6 +650,9 @@ function showTestimonials() {
     audio.play();
 
     replayButton.classList.add('hide');
+   
+    rateExperienceBtn.style.display = "none";
+
     mainScreen.classList.add('hide');
 
     // When audio finishes, remove text and show testimonials
@@ -773,6 +784,8 @@ function goBack() {
         replayButton.classList.add('hide'); 
     }
 
+    rateExperienceBtn.style.display = "none";
+
     // ✅ Hide the rate experience button
     const rateExperienceBtn = document.getElementById('rateExperienceBtn');
     if (rateExperienceBtn) {
@@ -796,7 +809,9 @@ function resetAnimation() {
     treatmentsBtn.classList.remove('show-single')
     testimonialsBtn.classList.remove('show-single')
     replayButton.classList.add('hide')
- 
+
+    rateExperienceBtn.style.display = "none";
+
     ALL_ELEMENTS.forEach(element => {
 
         if (element.getAttribute('animation'))
@@ -937,13 +952,16 @@ function goToAnimation(animationSeq) {
 function showReplayButton() {
     replayButton.classList.remove('hide'); 
     replayButton.classList.add('show'); 
+     setTimeout(function () {
+    rateExperienceBtn.style.display = "block";
+}, 10000);
 }
 document.addEventListener('DOMContentLoaded', function () {
     const replayButton = document.querySelector('#replayButton');
 
     // Ensure the button is initially visible
     replayButton.classList.remove('hide');
-   
+    
 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
@@ -961,6 +979,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Hide the replay button after clicking
         setTimeout(() => {
             replayButton.classList.add('hide');
+             
+    rateExperienceBtn.style.display = "none";
+
         }, 200); // Delay hiding slightly to ensure the click is registered
     });
 });

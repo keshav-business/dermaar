@@ -33,6 +33,7 @@ const grafting = document.querySelector('#grafting');
 const plucking = document.querySelector('#plucking');
 const singleHair = document.querySelector('#singleHair');
 const hairGrowth = document.querySelector('#hairGrowth');
+const rateExperienceBtn = document.querySelector('#rateExperienceBtn');
 
 // Audio Elements
 const audioElement = document.querySelector('#audioElement');
@@ -297,7 +298,9 @@ function startAnimationCommonCauses() {
             replayButton.classList.remove("hide");
             treatmentsBtn.classList.add('show-single')
             replayButton.classList.add('show')
-           
+        setTimeout(function () {
+    rateExperienceBtn.style.display = "block";
+}, 11000);
             showReplayButton();
             TIMELINE_DETAILS.isAnimationPlaying = false
             TIMELINE_DETAILS.currentAnimationSeq = 1
@@ -323,6 +326,7 @@ function startAnimationTreatments() {
     baseFace.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 1000')
     treatmentsBtn.classList.remove('show-single')
     replayButton.classList.add('hide')
+      rateExperienceBtn.style.display ="none";
    
     audioSource.setAttribute('src', './assets/audio/man/treatments/maleVo_Man_Treatments_Context_v1.mp3')
     audioElement.load()
@@ -610,7 +614,9 @@ function startAnimationTreatments() {
             baseFaceWithHair.setAttribute('animation__1', 'property: material.opacity; to: 1; dur: 1000')
             testimonialsBtn.classList.add('show-single')
             replayButton.style.display = "block"; 
-          
+               setTimeout(function () {
+    rateExperienceBtn.style.display = "block";
+}, 7000);
             replayButton.classList.remove('hide'); 
             replayButton.classList.add('show')
             showReplayButton();
@@ -626,6 +632,7 @@ function showTestimonials() {
     if (TIMELINE_DETAILS.isAnimationPlaying)
         return
     replayButton.classList.add('hide')
+      rateExperienceBtn.style.display ="none";
     audioElement.pause();
     audioElement.currentTime = 0;
     mainScreen.classList.add('hide')
@@ -681,6 +688,7 @@ function resetAnimation() {
     audioElement.currentTime = 0;
     treatmentsBtn.classList.remove('show-single')
     replayButton.classList.add('hide');
+      rateExperienceBtn.style.display ="none";
     testimonialsBtn.classList.remove('show-single')
 
     ALL_ELEMENTS.forEach(element => {
@@ -808,7 +816,7 @@ function goBack() {
     if (replayButton) {
         replayButton.classList.add('hide'); 
     }
-
+  rateExperienceBtn.style.display ="none";
     // ✅ Mark camera as inactive
     sessionStorage.setItem("cameraActive", "false");
 }
@@ -870,6 +878,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // ✅ Hide the replay button after clicking
        // replayButton.style.display = "none"; 
        replayButton.classList.add('hide'); 
+         rateExperienceBtn.style.display ="none";
         resetAnimation(); // Reset the animation before restarting
 
         setTimeout(() => {
@@ -887,6 +896,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function showReplayButton() {
         replayButton.classList.remove('hide'); 
         replayButton.classList.add('show'); 
+          setTimeout(function () {
+    rateExperienceBtn.style.display = "block";
+}, 8000);
     }
 
     // Call showReplayButton() at the end of startAnimationTreatments()

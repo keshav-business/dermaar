@@ -43,7 +43,7 @@ const whiteCircle = document.querySelector('#whiteCircle');
 const whiteCircleRight1 = document.querySelector('#whiteCircleRight1');
 const whiteCircleRight2 = document.querySelector('#whiteCircleRight2');
 const needle = document.querySelector('#needle');
-
+const rateExperienceBtn = document.querySelector('#rateExperienceBtn');
 // Audio Elements
 const audioElement = document.querySelector('#audioElement');
 const audioSource = document.querySelector('#audioSource');
@@ -351,6 +351,9 @@ setTimeout(() => {
                 treatmentsBtn.classList.add('show-single')
                 showReplayButton();
                 replayButton.classList.add("show");
+                   
+    rateExperienceBtn.style.display = "block";
+
                 TIMELINE_DETAILS.isAnimationPlaying = false
                 TIMELINE_DETAILS.currentAnimationSeq = 1
             }, 7500))
@@ -377,6 +380,9 @@ function startAnimationTreatments() {
 
     treatmentsBtn.classList.remove('show-single')
     replayButton.classList.add("hide");
+   
+    rateExperienceBtn.style.display = "none";
+
     baseBlurLayer.setAttribute('animation', 'property: material.opacity; to: .85; dur: 600')
     baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
     baseFaceWithFiller.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 500')
@@ -566,6 +572,9 @@ function startAnimationTreatments() {
             testimonialsBtn.classList.add('show-single')
             showReplayButton();
             replayButton.classList.add('show');
+               setTimeout(function () {
+    rateExperienceBtn.style.display = "block";
+}, 13000);
             TIMELINE_DETAILS.isAnimationPlaying = false
 
         }, 1000))
@@ -581,6 +590,9 @@ function showTestimonials() {
 
     testimonialsBtn.classList.remove('show-single')
     replayButton.classList.add("hide");
+   
+    rateExperienceBtn.style.display = "none";
+
     audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady_ThreadLift_Overview_v1.mp3')
     infoTextParaBottom.innerHTML = 'Many people turn to thread lift treatment to maintain a youthful appearance, enhancing their confidence and rejuvenating their look.'
     audioElement.load()
@@ -593,6 +605,9 @@ function showTestimonials() {
 
     treatmentsBtn.classList.remove('show-single')
     replayButton.classList.add("hide");
+      
+    rateExperienceBtn.style.display = "none";
+
     baseBlurLayer.setAttribute('animation', 'property: material.opacity; to: .85; dur: 600')
     baseFaceWithFiller.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500')
     baseFaceWithFiller.setAttribute('animation__1', 'property: scale; to: 1 1 1; dur: 500')
@@ -802,10 +817,14 @@ audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady
             whiteCircleRight1.setAttribute('animation__1', 'property: material.opacity; to: 0; dur: 150;delay:500;')
             tweenCircleR2.play()
             replayButton.classList.remove("hide");
+
             document.getElementById("reloadButton").style.display = "block"; 
             document.getElementById("replayButton").style.left = "41%";
             showReplayButton();
             replayButton.classList.add("show");
+               setTimeout(function () {
+    rateExperienceBtn.style.display = "block";
+}, 10000);
             TIMELINE_DETAILS.isAnimationPlaying = false
             whiteCircleRight2.setAttribute('animation', 'property: material.opacity; to: 0; dur: 500;')
         }, 500))
@@ -859,6 +878,9 @@ function resetAnimation() {
     treatmentsBtn.classList.remove('show-single')
     testimonialsBtn.classList.remove('show-single')
     replayButton.classList.add("hide");
+   
+    rateExperienceBtn.style.display = "none";
+
     ALL_ELEMENTS.forEach(element => {
 
         if (element.getAttribute('animation'))
@@ -968,6 +990,9 @@ function goBack() {
     if (replayButton) {
         replayButton.classList.add('hide'); 
     }
+      
+    rateExperienceBtn.style.display = "none";
+
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -977,12 +1002,17 @@ document.addEventListener('DOMContentLoaded', function () {
     replayButton.classList.add('hide');
     replayButton.classList.remove('show');
 
+    rateExperienceBtn.style.display = "none";
+
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
         
         // ✅ Hide the replay button immediately after clicking
         replayButton.classList.add('hide');
         replayButton.classList.remove('show');
+         
+    rateExperienceBtn.style.display = "none";
+
         document.getElementById("reloadButton").style.display = "none";
         resetAnimation();
 
@@ -1001,6 +1031,9 @@ document.addEventListener('DOMContentLoaded', function () {
 function showReplayButton() {
     replayButton.classList.remove('hide'); 
     replayButton.classList.add('show'); 
+       setTimeout(function () {
+    rateExperienceBtn.style.display = "block";
+}, 8000);
 }
 
 
