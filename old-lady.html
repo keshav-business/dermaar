@@ -452,10 +452,12 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script>
         // Start countdown when animation starts
+     // Start countdown when animation starts
+   // Start countdown when animation starts
         function startRatingCountdown() {
             const rateBtn = document.getElementById('rateExperienceBtn');
             rateBtn.style.display = 'none';
-            
+
             let countdown = 10;
             const countdownInterval = setInterval(() => {
                 countdown--;
@@ -472,9 +474,12 @@
         // Hook into animation start
         if (typeof goToAnimation === 'function') {
             const originalGoToAnimation = goToAnimation;
-            goToAnimation = function(animationSeq) {
+            goToAnimation = function (animationSeq) {
                 originalGoToAnimation(animationSeq);
-                startRatingCountdown();
+                // Don't show rating button for the 3rd experience (Before & After Pictures)
+                if (animationSeq !== 3) {
+                    startRatingCountdown();
+                }
             };
         }
 
@@ -486,31 +491,34 @@
 
         // Star rating functionality
         const stars = document.querySelectorAll('.star-rating .fa-star');
+        let selectedRating = 0; // Initialize selectedRating
+
         stars.forEach(star => {
-            star.addEventListener('mouseover', function() {
+            star.addEventListener('mouseover', function () {
                 const rating = this.getAttribute('data-rating');
                 highlightStars(rating);
             });
 
-            star.addEventListener('click', async function() {
-                const rating = this.getAttribute('data-rating');
+            star.addEventListener('click', async function () {
+                selectedRating = this.getAttribute('data-rating'); // Set selectedRating on click
                 const userEmail = localStorage.getItem('userEmail');
-                
-                if (!userEmail) {
+                const playerId = localStorage.getItem('playerId');
+
+                if (!userEmail || !playerId) {
                     alert('Please register first!');
                     window.location.href = 'index.html';
                     return;
                 }
 
                 try {
-                    const response = await fetch('https://ubuntu.tail2124eb.ts.net/ar/feedback', {
+                    const response = await fetch('https://ubikback-production.up.railway.app/ar/save_score', {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            email: userEmail,
-                            star: parseInt(rating)
+                            player_id: playerId, // Use player_id instead of email
+                            score: selectedRating // Use selected rating as score
                         })
                     });
 
@@ -537,6 +545,7 @@
                 }
             });
         }
+
     </script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 
