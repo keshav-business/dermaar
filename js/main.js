@@ -1,7 +1,7 @@
 let sceneEl = null,
     targetImage = null,
     arSystem = null;
-
+// let selectedRating = 0; // Initialize at the top of your script
 const ANIMATION_DELAY_CONSTANT = 1000
 const TIMELINE_DETAILS = {
     currentAnimationSeq: 1,
