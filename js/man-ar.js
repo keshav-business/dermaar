@@ -11,6 +11,8 @@ const TIMELINE_DETAILS = {
 
 const TIMEOUTS = []
 let AR_READY = false
+let targetStartTime = null;  // When target is found
+let totalViewTime = 0;       // Accumulated view time across multiple sightings
 
 // AR Elements
 const baseBlurLayer = document.querySelector('#baseBlurLayer');
@@ -299,7 +301,7 @@ function startAnimationCommonCauses() {
             treatmentsBtn.classList.add('show-single')
             replayButton.classList.add('show')
         setTimeout(function () {
-    rateExperienceBtn.style.display = "block";
+    rateExperienceBtn.style.display = "none";
 }, 11000);
             showReplayButton();
             TIMELINE_DETAILS.isAnimationPlaying = false
@@ -615,7 +617,7 @@ function startAnimationTreatments() {
             testimonialsBtn.classList.add('show-single')
             replayButton.style.display = "block"; 
                setTimeout(function () {
-    rateExperienceBtn.style.display = "block";
+    rateExperienceBtn.style.display = "none";
 }, 7000);
             replayButton.classList.remove('hide'); 
             replayButton.classList.add('show')
@@ -752,8 +754,59 @@ function init() {
         } else {
             arSystem.unpause()
         }
-        targetImage.addEventListener("targetFound", startAnimation);
-        targetImage.addEventListener("targetLost", resetAnimation);
+    targetImage.addEventListener("targetFound", () => {
+    console.log("Target found");
+
+    // Start timer if not already started
+    if (!targetStartTime) {
+        targetStartTime = Date.now();
+    }
+
+    startAnimation();
+});
+
+targetImage.addEventListener("targetLost", () => {
+    console.log("Target lost");
+
+    if (targetStartTime) {
+        const duration = Date.now() - targetStartTime; // session duration in ms
+        totalViewTime += duration;
+
+        console.log("Session duration (ms):", duration);
+        console.log("Total accumulated time (ms):", totalViewTime);
+
+        const playerId = localStorage.getItem('playerId');
+        if (!playerId) {
+            console.error("No playerId found! Cannot save time.");
+            targetStartTime = null;
+            return;
+        }
+
+        // Convert ms to seconds if backend expects seconds
+        const durationSeconds = Math.floor(duration / 1000);
+        const totalSeconds = Math.floor(totalViewTime / 1000);
+
+        fetch("https://ubikback-production.up.railway.app/ar/save_time_boy", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                player_id: playerId,
+                time_seconds: durationSeconds,      // backend expects this field
+                total_time_seconds: totalSeconds    // optional, adjust if backend requires
+            })
+        })
+        .then(res => {
+            console.log("Server response status:", res.status);
+            return res.json();
+        })
+        .then(data => console.log("Saved view time response:", data))
+        .catch(err => console.error("Error saving view time:", err));
+
+        targetStartTime = null;
+        resetAnimation();
+    }
+});
+
         // arError event triggered when something went wrong. Mostly browser compatbility issue
         sceneEl.addEventListener("arError", (event) => {
             console.log("MindAR failed to start")
@@ -897,7 +950,7 @@ document.addEventListener('DOMContentLoaded', function () {
         replayButton.classList.remove('hide'); 
         replayButton.classList.add('show'); 
           setTimeout(function () {
-    rateExperienceBtn.style.display = "block";
+    rateExperienceBtn.style.display = "none";
 }, 8000);
     }
 

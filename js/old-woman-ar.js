@@ -11,6 +11,8 @@ const TIMELINE_DETAILS = {
 
 const TIMEOUTS = []
 let AR_READY = false
+let targetStartTime = null; // When the target is detected
+let totalViewTime = 0;      // Accumulated time across multiple detections
 
 // AR Elements
 const baseBlurLayer = document.querySelector('#baseBlurLayer');
@@ -352,7 +354,7 @@ setTimeout(() => {
                 showReplayButton();
                 replayButton.classList.add("show");
                    
-    rateExperienceBtn.style.display = "block";
+    rateExperienceBtn.style.display = "none";
 
                 TIMELINE_DETAILS.isAnimationPlaying = false
                 TIMELINE_DETAILS.currentAnimationSeq = 1
@@ -573,7 +575,7 @@ function startAnimationTreatments() {
             showReplayButton();
             replayButton.classList.add('show');
                setTimeout(function () {
-    rateExperienceBtn.style.display = "block";
+    rateExperienceBtn.style.display = "none";
 }, 13000);
             TIMELINE_DETAILS.isAnimationPlaying = false
 
@@ -823,7 +825,7 @@ audioSource.setAttribute('src', './assets/audio/old-lady/thread/femaleVO_OldLady
             showReplayButton();
             replayButton.classList.add("show");
                setTimeout(function () {
-    rateExperienceBtn.style.display = "block";
+    rateExperienceBtn.style.display = "none";
 }, 10000);
             TIMELINE_DETAILS.isAnimationPlaying = false
             whiteCircleRight2.setAttribute('animation', 'property: material.opacity; to: 0; dur: 500;')
@@ -939,8 +941,59 @@ function init() {
     } else {
         arSystem.unpause()
     }
-    targetImage.addEventListener("targetLost", resetAnimation);
-    targetImage.addEventListener("targetFound", startAnimation);
+targetImage.addEventListener("targetFound", () => {
+    console.log("Target found");
+
+    // Start timer only if not already started
+    if (!targetStartTime) {
+        targetStartTime = Date.now();
+    }
+
+    startAnimation();
+});
+
+targetImage.addEventListener("targetLost", () => {
+    console.log("Target lost");
+
+    if (targetStartTime) {
+        const duration = Date.now() - targetStartTime; // session duration in ms
+        totalViewTime += duration;
+
+        console.log("Session duration (ms):", duration);
+        console.log("Total accumulated time (ms):", totalViewTime);
+
+        const playerId = localStorage.getItem('playerId');
+        if (!playerId) {
+            console.error("No playerId found! Cannot save time.");
+            targetStartTime = null;
+            return;
+        }
+
+        // Convert ms to seconds if backend expects seconds
+        const durationSeconds = Math.floor(duration / 1000);
+        const totalSeconds = Math.floor(totalViewTime / 1000);
+
+        fetch("https://ubikback-production.up.railway.app/ar/save_time_old_girl", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                player_id: playerId,
+                time_seconds: durationSeconds,      // backend expects this field
+                total_time_seconds: totalSeconds    // optional, adjust if backend requires
+            })
+        })
+        .then(res => {
+            console.log("Server response status:", res.status);
+            return res.json();
+        })
+        .then(data => console.log("Saved view time response:", data))
+        .catch(err => console.error("Error saving view time:", err));
+
+        targetStartTime = null;
+        resetAnimation();
+    }
+});
+
     // arError event triggered when something went wrong. Mostly browser compatbility issue
     sceneEl.addEventListener("arError", (event) => {
         console.log("MindAR failed to start")
@@ -1032,7 +1085,7 @@ function showReplayButton() {
     replayButton.classList.remove('hide'); 
     replayButton.classList.add('show'); 
        setTimeout(function () {
-    rateExperienceBtn.style.display = "block";
+    rateExperienceBtn.style.display = "none";
 }, 8000);
 }
 

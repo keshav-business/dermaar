@@ -1,7 +1,7 @@
 let sceneEl = null,
     targetImage = null,
     arSystem = null;
-// let selectedRating = 0; // Initialize at the top of your script
+
 const ANIMATION_DELAY_CONSTANT = 1000
 const TIMELINE_DETAILS = {
     currentAnimationSeq: 1,
@@ -18,6 +18,9 @@ const messages = [
     'It acne can be cured.',
     ''
 ];
+
+let targetStartTime = null; // when the target is found
+let totalViewTime = 0;      // cumulative view time across multiple sightings
 
 
 let index = 0;
@@ -101,13 +104,13 @@ function startAnimationCommonCauses() {
     function changeTextOnce() {
         messages.forEach((message, index) => {
             let delay;
-            
+
             if (index === messages.length - 1) {
                 delay = (index - 1) * 6200 + 3000; // Last second message appears 3s before last
             } else {
                 delay = index * 6200; // Normal 6.2s delay
             }
-    
+
             setTimeout(() => {
                 infoTextParaBottom.innerHTML = message;
                 infoTextBottom.classList.add('show');
@@ -135,14 +138,14 @@ function startAnimationCommonCauses() {
         // audioElement.play()
         smoke.setAttribute('animation', 'property: material.opacity; to: 1; dur: 100')
         dirt.setAttribute('animation', 'property: material.opacity; to: 1; dur: 500;delay:1000;')
-        
+
         let animation = { progress: 0 };
 
         const tween = gsap.timeline(
             {
                 onUpdate: function () {
                     smoke.setAttribute('sprite-sheet', 'progress', animation.progress);
-                    
+
                 },
             }
         );
@@ -170,7 +173,7 @@ function startAnimationCommonCauses() {
         // audioElement.play()
         smoke.setAttribute('animation', 'property: material.opacity; to: 0; dur: 1000')
         dirt.setAttribute('animation', 'property: material.opacity; to: 0; dur: 1000;delay:0;')
-   
+
 
         emojiSprite_1.setAttribute('animation', `property: material.opacity; to: 1; dur: ${.25 * ANIMATION_DELAY_CONSTANT}`)
 
@@ -295,15 +298,15 @@ function startAnimationCommonCauses() {
         eyeliner.removeAttribute('animation__1')
 
         TIMEOUTS.push(setTimeout(() => {
-            
+
             // Start Animating Medicines
             capsuleGroup.setAttribute('position', '0 .2 1')
             capsuleGroup.setAttribute('animation', `property: material.opacity; to: 1; delay:800; dur: ${.3 * ANIMATION_DELAY_CONSTANT}`)
             capsuleGroup.setAttribute('animation__1', `property: position; to: 0 -.1 1; delay:1200; dur: ${.75 * ANIMATION_DELAY_CONSTANT}`)
             // capsuleGroup.setAttribute('animation__1', `property: scale; to: 0.4 0.4 1;delay:300; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
-    
+
             let animationCapsuleGroup = { progress: 0 };
-    
+
             const tweenCapsuleGroup = gsap.timeline(
                 {
                     onUpdate: function () {
@@ -323,9 +326,9 @@ function startAnimationCommonCauses() {
             capsuleGroup1.setAttribute('animation', `property: material.opacity; to: 1;delay:2000; dur: ${.1 * ANIMATION_DELAY_CONSTANT}`)
             capsuleGroup.setAttribute('animation__2', `property: material.opacity; to: 0;delay:2000; dur: ${.1 * ANIMATION_DELAY_CONSTANT}`)
             // capsuleGroup.setAttribute('animation__1', `property: scale; to: 0.4 0.4 1;delay:300; dur: ${1.5 * ANIMATION_DELAY_CONSTANT}`)
-    
+
             let animationCapsuleGroup1 = { progress: 0 };
-    
+
             const tweenCapsuleGroup1 = gsap.timeline(
                 {
                     onUpdate: function () {
@@ -355,17 +358,17 @@ function startAnimationCommonCauses() {
         capsuleGroup1.setAttribute('animation', `property: material.opacity; to: 0; dur: ${.75 * ANIMATION_DELAY_CONSTANT}`)
         capsuleGroup.removeAttribute('animation__1')
         capsuleGroup.removeAttribute('animation__2')
-       
+
         treatmentsBtn.classList.add('show-single')
         replayButton.classList.add('show')
-         setTimeout(function () {
-    rateExperienceBtn.style.display = "block";
-}, 7000);
+        setTimeout(function () {
+            rateExperienceBtn.style.display = "none";
+        }, 7000);
         showReplayButton();
-      
+
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
-         
+
     }, 22.8 * ANIMATION_DELAY_CONSTANT))
 
 
@@ -375,9 +378,9 @@ function startAnimationTreatments() {
 
     if (TIMELINE_DETAILS.isAnimationPlaying)
         return
-infoTextParaBottom.innerHTML = 'Acne treatment focuses on reducing inflammation, unclogging pores, and healing the skin to restore confidence.'
-infoTextBottom.classList.add('show')  
-mainScreen.classList.add('hide')
+    infoTextParaBottom.innerHTML = 'Acne treatment focuses on reducing inflammation, unclogging pores, and healing the skin to restore confidence.'
+    infoTextBottom.classList.add('show')
+    mainScreen.classList.add('hide')
     backBtn.classList.add('show')
     TIMELINE_DETAILS.isAnimationPlaying = true
     TIMELINE_DETAILS.currentAnimationSeq = 2
@@ -403,7 +406,7 @@ mainScreen.classList.add('hide')
         audioElement.load()
         audioElement.play()
         infoTextParaBottom.innerHTML = 'Topical treatments like retinoids and benzoyl peroxide target acne at its source, while antibiotics reduce bacterial growth and inflammation.'
-       
+
 
         TIMEOUTS.push(setTimeout(() => {
 
@@ -627,18 +630,18 @@ mainScreen.classList.add('hide')
         laser.removeAttribute('animation__4')
         testimonialsBtn.classList.add('show-single')
         replayButton.classList.add('show')
-       
-    rateExperienceBtn.style.display = "block";
+
+        rateExperienceBtn.style.display = "none";
 
         showReplayButton();
         TIMELINE_DETAILS.isAnimationPlaying = false
         TIMELINE_DETAILS.currentAnimationSeq = 1
- infoTextParaBottom.innerHTML = ''
+        infoTextParaBottom.innerHTML = ''
     }, 40.5 * ANIMATION_DELAY_CONSTANT))
 }
 
 function showTestimonials() {
-    if (TIMELINE_DETAILS.isAnimationPlaying) 
+    if (TIMELINE_DETAILS.isAnimationPlaying)
         return;
 
     // Show full-screen text
@@ -650,7 +653,7 @@ function showTestimonials() {
     audio.play();
 
     replayButton.classList.add('hide');
-   
+
     rateExperienceBtn.style.display = "none";
 
     mainScreen.classList.add('hide');
@@ -781,7 +784,7 @@ function goBack() {
     // ✅ Hide the replay button
     const replayButton = document.getElementById('replayButton');
     if (replayButton) {
-        replayButton.classList.add('hide'); 
+        replayButton.classList.add('hide');
     }
 
     rateExperienceBtn.style.display = "none";
@@ -874,8 +877,62 @@ function init() {
         } else {
             arSystem.unpause()
         }
-        targetImage.addEventListener("targetLost", resetAnimation);
-        targetImage.addEventListener("targetFound", startAnimation);
+      // Get playerId from localStorage
+targetImage.addEventListener("targetFound", () => {
+    console.log("Target found");
+
+    // Start timer only if not already running
+    if (!targetStartTime) {
+        targetStartTime = Date.now();
+        console.log("Timer started at:", targetStartTime);
+    }
+
+    startAnimation(); // your existing animation
+});
+
+targetImage.addEventListener("targetLost", () => {
+    console.log("Target lost");
+
+    if (targetStartTime) {
+        const duration = Date.now() - targetStartTime; // session duration in ms
+        totalViewTime += duration;
+
+        console.log("Session duration (ms):", duration);
+        console.log("Total accumulated time (ms):", totalViewTime);
+
+        const playerId = localStorage.getItem('playerId');
+        if (!playerId) {
+            console.error("No playerId found! Cannot save time.");
+            targetStartTime = null;
+            return;
+        }
+
+        // Convert ms to seconds if backend expects seconds
+        const durationSeconds = Math.floor(duration / 1000);
+        const totalSeconds = Math.floor(totalViewTime / 1000);
+
+        fetch("https://ubikback-production.up.railway.app/ar/save_time_girl", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                player_id: playerId,
+                time_seconds: durationSeconds,      // backend expects this field
+                total_time_seconds: totalSeconds    // optional, adjust if backend requires
+            })
+        })
+        .then(res => {
+            console.log("Server response status:", res.status);
+            return res.json();
+        })
+        .then(data => console.log("Saved view time response:", data))
+        .catch(err => console.error("Error saving view time:", err));
+
+        targetStartTime = null;
+        resetAnimation();
+    }
+});
+
+
         // arError event triggered when something went wrong. Mostly browser compatbility issue
         sceneEl.addEventListener("arError", (event) => {
             console.log("MindAR failed to start")
@@ -920,20 +977,20 @@ function goToAnimation(animationSeq) {
 
     if (Number(animationSeq) === 3) {
         // Show full-screen text
-       // const fullScreenText = document.getElementById("fullScreenText");
-      //  fullScreenText.style.display = "flex";
-//
+        // const fullScreenText = document.getElementById("fullScreenText");
+        //  fullScreenText.style.display = "flex";
+        //
         // Play audio
-//const audio = document.getElementById("animationAudio");
-      //  audio.play();
+        //const audio = document.getElementById("animationAudio");
+        //  audio.play();
 
         // When audio finishes, remove text and start animation
-       // audio.onended = function () {
-           // fullScreenText.style.display = "none";
-            TIMELINE_DETAILS.currentAnimationSeq = 3;
-            init();
-            sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
-       // };
+        // audio.onended = function () {
+        // fullScreenText.style.display = "none";
+        TIMELINE_DETAILS.currentAnimationSeq = 3;
+        init();
+        sessionStorage.setItem("cameraActive", "true"); // Mark camera as active
+        // };
     } else {
         // scanText section remains unchanged
         const scanText = document.getElementById("scanText");
@@ -950,18 +1007,18 @@ function goToAnimation(animationSeq) {
 }
 
 function showReplayButton() {
-    replayButton.classList.remove('hide'); 
-    replayButton.classList.add('show'); 
-     setTimeout(function () {
-    rateExperienceBtn.style.display = "block";
-}, 10000);
+    replayButton.classList.remove('hide');
+    replayButton.classList.add('show');
+    setTimeout(function () {
+        rateExperienceBtn.style.display = "none";
+    }, 10000);
 }
 document.addEventListener('DOMContentLoaded', function () {
     const replayButton = document.querySelector('#replayButton');
 
     // Ensure the button is initially visible
     replayButton.classList.remove('hide');
-    
+
 
     replayButton.addEventListener('click', function () {
         console.log('Replay button clicked!'); // Debugging log
@@ -979,8 +1036,8 @@ document.addEventListener('DOMContentLoaded', function () {
         // Hide the replay button after clicking
         setTimeout(() => {
             replayButton.classList.add('hide');
-             
-    rateExperienceBtn.style.display = "none";
+
+            rateExperienceBtn.style.display = "none";
 
         }, 200); // Delay hiding slightly to ensure the click is registered
     });
@@ -988,8 +1045,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('visibilitychange', function () {
     console.log(document.hidden);
-    
-    if(document.hidden)
+
+    if (document.hidden)
         resetAnimation()
 }, false);
 

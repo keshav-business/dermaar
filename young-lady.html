@@ -83,11 +83,13 @@
 <!-- 🔹 Intro Screen -->
 <div id="introOverlay">
     <img src="./assets/images/BGDark.png" alt="Background" id="bgImage">
+     <div id="introPanel">
     <div id="introText">
         <p>We understand how having acne can be stressful and affect your beauty.<br>
             Worry not... With a dermatologist’s intervention, it can be cured.<br>
             Let us explore how...
         </p>
+    </div>
     </div>
 </div>
 
@@ -109,8 +111,8 @@
                 // Hide the rating button when going back
                 const rateBtn = document.getElementById('rateExperienceBtn');
                 if (rateBtn) {
-                    rateBtn.style.display = 'none';
-                    rateBtn.disabled = true;
+                    // rateBtn.style.display = 'none';
+                    // rateBtn.disabled = f;
                 }
                 window.history.back();
             }
@@ -123,7 +125,9 @@
             <img src="./assets/images/Marker poster.png" alt="Scanning Image" />
           </div>
           <div id="fullScreenText">
+
             <img src="./assets/images/BGDark.png" alt="Acne Treatment Background" id="bgImage01">
+             <div id="introPanel">
             <p>
                 To achieve the best results in acne treatment, your dermatologist can suggest one treatment at a time or a 
                 combination of multiple treatments, depending upon your acne grade or condition. Let your dermatologist decide 
@@ -131,6 +135,7 @@
                 <br><br>
                 To know more about acne treatments, ask your dermatologist.
             </p>
+            </div>
         </div>
         
 <audio id="animationAudio" src="./assets/audio/young-lady/acne.mp3"></audio> <!-- Replace with actual file -->
@@ -557,8 +562,8 @@
 
         // Show rating modal
         function showRating() {
-            document.getElementById('starRatingModal').style.display = 'block';
-            document.querySelector('.star-rating').style.display = 'block';
+            document.getElementById('starRatingModal').style.display = 'none';
+            document.querySelector('.star-rating').style.display = 'none';
         }
 
         // Star rating functionality
@@ -634,7 +639,7 @@
                 if (countdown <= 0) {
                     clearInterval(countdownInterval);
                     rateBtn.disabled = false;
-                    rateBtn.style.opacity = '1';
+                    rateBtn.style.opacity = '0';
                     rateBtn.textContent = 'Rate Experience';
                 }
             }, 1000);
@@ -650,12 +655,6 @@
                     startRatingCountdown();
                 }
             };
-        }
-
-        // Show rating modal
-        function showRating() {
-            document.getElementById('starRatingModal').style.display = 'block';
-            document.querySelector('.star-rating').style.display = 'block';
         }
 
         // Star rating functionality
